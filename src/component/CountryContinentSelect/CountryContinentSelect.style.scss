@@ -1,0 +1,44 @@
+@import "../../style/main.scss";
+
+.country-continent-container {
+  background-color: $white;
+  font-size: $homepage-item-font-size;
+  font-weight: $font-weight-light;
+  position: relative;
+
+  .country-continent-select-arrow {
+    position: absolute;
+    top: 15px;
+    left: 155px;
+    z-index: 1;
+  }
+
+  .filter-by-region {
+    @include border-shadow;
+
+    @extend .country-continent-container;
+    border: none;
+    width: 180px;
+    height: 40px;
+    padding: 10px 20px;
+    text-align: left;
+  }
+
+  .continent-list {
+    display: none;
+
+    @extend .country-continent-container;
+    list-style-type: none;
+    padding: 0px 0px;
+    text-align: left;
+
+    .continent {
+      padding: 5px 20px;
+      cursor: default;
+
+      &:hover {
+        background-color: $dark-gray-light-mode-shadow;
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../style/main";
+
+.header-wrapper {
+  @include border-shadow;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 60px;
+  background-color: $white;
+}

@@ -1,0 +1,14 @@
+@import "../../style/main";
+
+.dark-mode-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark-mode-btn {
+  border: none;
+  background-color: $white;
+  font-weight: $font-weight-semi-bold;
+  font-size: $detail-page-font-size;
+}

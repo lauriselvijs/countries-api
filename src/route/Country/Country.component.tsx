@@ -2,7 +2,7 @@ import React from "react";
 import "./Country.style.scss";
 
 const Country = () => {
-  return <div>Country</div>;
+  return <main className="country">Country</main>;
 };
 
 export default Country;

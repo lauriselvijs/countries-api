@@ -1,0 +1,26 @@
+@import "../../style/main";
+
+.search-country-container {
+  position: relative;
+
+  .search-icon {
+    position: absolute;
+    top: 14px;
+    left: 25px;
+  }
+
+  .search-country-input {
+    @include border-shadow;
+
+    border: 0;
+    border-radius: $border-radius;
+    height: 40px;
+    width: 450px;
+    text-indent: 60px;
+
+    &::placeholder {
+      font-size: $homepage-item-font-size;
+      font-weight: $font-weight-light;
+    }
+  }
+}

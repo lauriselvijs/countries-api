@@ -4,13 +4,16 @@
 $black: black;
 $white: white;
 
-// Neutral
+// Dark mode
+$dark-gray-dark-mode-shadow: hsl(209, 23%, 20%);
 $dark-blue-dark-mode-elements: hsl(209, 23%, 22%);
-$very-dark-blue-dark-mode-bg: hsl(207, 26%, 17%);
-$very-dark-blue-light-mode-text: hsl(200, 15%, 8%);
-$dark-gray-light-mode-input: hsl(0, 0%, 52%);
-$very-light-gray-light-mode-bg: hsl(0, 0%, 98%);
 $white-dark-mode-text: hsl(0, 0%, 100%);
+$very-dark-blue-dark-mode-bg: hsl(207, 26%, 17%);
+
+// Light mode
+$dark-gray-light-mode-shadow: hsl(0, 6%, 83%);
+$very-dark-blue-light-mode-text: hsl(200, 15%, 8%);
+$very-light-gray-light-mode-bg: hsl(0, 0%, 98%);
 
 // Fonts
 $font-family: "Nunito Sans", sans-serif;
@@ -19,5 +22,11 @@ $font-weight-semi-bold: 600;
 $font-weight-extra-bold: 800;
 
 // Font size
-$homepage-item-font-size: 14px;
+$country-name: 28px;
+$title-font-size: 22px;
+$country-name-main-page: 20px;
 $detail-page-font-size: 16px;
+$homepage-item-font-size: 14px;
+
+// Border
+$border-radius: 4px;
