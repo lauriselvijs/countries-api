@@ -1,1 +1,23 @@
 @import "../../style/main";
+
+.back-button {
+  @include border-shadow;
+
+  margin-top: 30px;
+  margin-bottom: -35px;
+  position: relative;
+  width: 110px;
+  height: 40px;
+  border: none;
+  background-color: $white;
+  border-radius: $border-radius;
+  font-size: $detail-page-font-size;
+  font-weight: $font-weight-light;
+  text-indent: 20px;
+
+  .bs-arrow-left {
+    position: absolute;
+    top: 12.5px;
+    left: 24px;
+  }
+}

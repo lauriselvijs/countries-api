@@ -1,1 +1,43 @@
 @import "../../style/main";
+
+.countries-card {
+  @include border-shadow;
+  background-color: $white;
+
+  .countries-card-contents {
+    padding-top: 5px;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    line-height: 1.8;
+
+    .country-name {
+      font-size: $country-name-main-page;
+      font-weight: $font-weight-extra-bold;
+      padding: 10px 0px;
+    }
+
+    .population {
+      font-size: $detail-page-font-size;
+
+      &-name {
+        font-weight: $font-weight-semi-bold;
+      }
+    }
+
+    .region {
+      @extend .population;
+
+      &-name {
+        @extend .population-name;
+      }
+    }
+
+    .capital {
+      @extend .population;
+
+      &-name {
+        @extend .population-name;
+      }
+    }
+  }
+}

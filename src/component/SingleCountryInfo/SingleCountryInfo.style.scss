@@ -1,0 +1,95 @@
+@import "../../style/main";
+
+.single-country-info {
+  display: flex;
+  align-items: center;
+  padding: 60px 60px;
+  gap: 10vw;
+
+  .flag {
+    &-img {
+      width: 40vw;
+      height: 25vw;
+    }
+  }
+
+  .country-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    line-height: 2;
+    font-size: $detail-page-font-size;
+
+    .country-name {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      font-size: $country-name;
+      font-weight: $font-weight-extra-bold;
+      padding: 20px 0px;
+      top: 0px;
+      left: 0px;
+    }
+
+    .border-countries {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      padding-top: 20px;
+
+      &-text {
+        font-weight: $font-weight-semi-bold;
+      }
+    }
+
+    .country-info {
+      display: flex;
+      align-items: flex-start;
+      gap: 160px;
+      width: 100%;
+      line-height: 2;
+      font-size: $detail-page-font-size;
+      position: relative;
+
+      &-left-section {
+        .native-name-text {
+          font-weight: $font-weight-semi-bold;
+        }
+
+        .country-population-text {
+          @extend .native-name-text;
+        }
+
+        .country-region-text {
+          @extend .native-name-text;
+        }
+
+        .country-subregion-text {
+          @extend .native-name-text;
+        }
+
+        .country-capital-text {
+          @extend .native-name-text;
+        }
+      }
+
+      &-right-section {
+        .country-top-level-domain-text {
+          font-weight: $font-weight-semi-bold;
+        }
+
+        .country-currencies-text {
+          @extend .country-top-level-domain-text;
+        }
+
+        .country-languages-text {
+          @extend .country-top-level-domain-text;
+        }
+      }
+    }
+  }
+}

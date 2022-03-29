@@ -1,8 +1,8 @@
 import React from "react";
 import "./NavBarWrapper.style.scss";
-import Wrapper from "../../type-definition/Wrapper";
+import { WrapperProps } from "../../type-definition/Wrapper.d";
 
-const NavBarWrapper = ({ children }: Wrapper.WrapperProps) => {
+const NavBarWrapper = ({ children }: WrapperProps) => {
   return <section className="nav-bar-wrapper">{children}</section>;
 };
 

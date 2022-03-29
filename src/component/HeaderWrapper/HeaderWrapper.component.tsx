@@ -1,8 +1,8 @@
 import React from "react";
 import "./HeaderWrapper.style.scss";
-import Wrapper from "../../type-definition/Wrapper";
+import { WrapperProps } from "../../type-definition/Wrapper.d";
 
-const HeaderWrapper = ({ children }: Wrapper.WrapperProps) => {
+const HeaderWrapper = ({ children }: WrapperProps) => {
   return <header className="header-wrapper">{children}</header>;
 };
 

@@ -6,45 +6,4 @@
   padding: 20px 10px;
   justify-items: center;
   row-gap: 60px;
-
-  .countries-card {
-    @include border-shadow;
-
-    .countries-card-contents {
-      padding-top: 5px;
-      padding-bottom: 40px;
-      padding-left: 20px;
-      line-height: 1.8;
-
-      .country-name {
-        font-size: $country-name-main-page;
-        font-weight: $font-weight-extra-bold;
-        padding: 10px 0px;
-      }
-
-      .population {
-        font-size: $detail-page-font-size;
-
-        &-name {
-          font-weight: $font-weight-extra-bold;
-        }
-      }
-
-      .region {
-        @extend .population;
-
-        &-name {
-          @extend .population-name;
-        }
-      }
-
-      .capital {
-        @extend .population;
-
-        &-name {
-          @extend .population-name;
-        }
-      }
-    }
-  }
 }
