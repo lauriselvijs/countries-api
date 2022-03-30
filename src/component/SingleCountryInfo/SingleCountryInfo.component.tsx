@@ -6,20 +6,40 @@ import { populationFormatting } from "../../util/Population/Population";
 
 const SingleCountryInfo = () => {
   const [country, setCountry]: any = useState([]);
+  const [borderCountries, setBorderCountries] = useState<string[]>([]);
+
+  const getCountryAndBorderData = async () => {
+    const data = await getCountryData();
+
+    const [{ countryObj }] = data;
+
+    console.log(countryObj);
+
+    data[0].borders.forEach(async (countryCode: string) => {
+      const {
+        data: { name },
+      }: any = await axios.get(
+        `https://restcountries.com/v2/alpha/${countryCode}`
+      );
+
+      setBorderCountries((prevState: string[]) => [...prevState, name]);
+    });
+  };
 
   const getCountryData = async () => {
     try {
       const { data } = await axios.get(
         "https://restcountries.com/v2/name/belgium"
       );
-      return setCountry(data);
+      setCountry(data);
+      return data;
     } catch (error: any) {
       return error;
     }
   };
 
   useEffect(() => {
-    getCountryData();
+    getCountryAndBorderData();
   }, []);
 
   return (
@@ -27,7 +47,7 @@ const SingleCountryInfo = () => {
       <div className="flag">
         <img
           className="flag-img"
-          src={country[0]?.flags?.png}
+          src={country[0]?.flags.png}
           alt={country[0]?.name + " flag"}
         />
       </div>
@@ -80,7 +100,7 @@ const SingleCountryInfo = () => {
         </div>
         <div className="border-countries">
           <span className="border-countries-text">Border countries:</span>
-          <BorderCountriesBtn borderCountries={country[0]?.borders} />
+          <BorderCountriesBtn borderCountries={borderCountries} />
         </div>
       </div>
     </div>
