@@ -4,6 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 }
 
 .dark-mode-btn {
@@ -11,4 +15,10 @@
   background-color: $white;
   font-weight: $font-weight-semi-bold;
   font-size: $detail-page-font-size;
+}
+
+@media only screen and (max-width: 375px) {
+  .dark-mode-btn {
+    font-size: $homepage-item-font-size;
+  }
 }

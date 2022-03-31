@@ -7,13 +7,28 @@
     @include border-shadow;
 
     width: fit-content;
+    height: fit-content;
     padding: 5px 20px;
     margin: 0px 5px;
-    height: 30px;
     border: none;
     background-color: $white;
     border-radius: $border-radius;
     font-size: $detail-page-font-size;
     font-weight: $font-weight-light;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .border-countries-btn-container {
+    padding-left: 0px;
+
+    .border-countries-btn {
+      margin: 5px 0px;
+      margin-right: 10px;
+    }
   }
 }

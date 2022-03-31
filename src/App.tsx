@@ -16,7 +16,8 @@ const App = () => {
         </HeaderWrapper>
         <Routes>
           <Route path={"/"} element={<Root />}></Route>
-          <Route path={"/country"} element={<Country />}></Route>
+          <Route path={"/country/:cca3"} element={<Country />}></Route>
+          {/* <Route path="*" element={<NoMatch />} /> */}
         </Routes>
       </Router>
     </div>

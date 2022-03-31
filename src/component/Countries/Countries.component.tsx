@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./Countries.style.scss";
 import axios from "axios";
 import CountryCard from "../CountryCard";
+import { CountryAPI } from "../../constant/CountryAPI";
+
+const { GET_ALL_COUNTRY_DATA_URL } = CountryAPI;
 
 const Countries = () => {
   const [countries, setCountries]: any = useState([]);
 
   const getCountriesData = async () => {
     try {
-      const { data } = await axios.get("https://restcountries.com/v3.1/all");
+      const { data } = await axios.get(GET_ALL_COUNTRY_DATA_URL);
       return setCountries(data);
     } catch (error: any) {
       return error;

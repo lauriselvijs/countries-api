@@ -1,10 +1,12 @@
 import React from "react";
 import { populationFormatting } from "../../util/Population/Population";
 import "./CountryCard.style.scss";
+import { Link } from "react-router-dom";
 
 const CountryCard = ({
   country: {
     name: { common },
+    cca3,
     population,
     region,
     capital,
@@ -13,7 +15,9 @@ const CountryCard = ({
 }: any) => {
   return (
     <div className="countries-card">
-      <img className="country-flag" src={png} alt={common + " flag"} />
+      <Link to={`/country/${cca3}`}>
+        <img className="country-flag" src={png} alt={common + " flag"} />
+      </Link>
       <div className="countries-card-contents">
         <div className="country-name">{common}</div>
         <div className="population">

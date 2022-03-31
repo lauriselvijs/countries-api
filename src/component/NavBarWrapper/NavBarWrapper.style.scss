@@ -6,3 +6,26 @@
   justify-content: space-between;
   padding: 30px 60px;
 }
+
+@media only screen and (max-width: 1000px) {
+  .nav-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0px;
+    padding: 20px 40px;
+    margin-top: 20px;
+    height: 120px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .nav-bar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 20px 10px;
+    height: 120px;
+  }
+}

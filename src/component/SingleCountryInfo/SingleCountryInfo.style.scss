@@ -3,7 +3,7 @@
 .single-country-info {
   display: flex;
   align-items: center;
-  padding: 60px 60px;
+  padding: 40px 60px;
   gap: 10vw;
 
   .flag {
@@ -89,6 +89,37 @@
         .country-languages-text {
           @extend .country-top-level-domain-text;
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .single-country-info {
+    padding: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .flag {
+      &-img {
+        padding-top: 50px;
+        width: 90vw;
+        height: 60vw;
+      }
+    }
+
+    .country-info-container {
+      .country-info {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .border-countries {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
       }
     }
   }

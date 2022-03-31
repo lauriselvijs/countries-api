@@ -3,35 +3,46 @@ import "./SingleCountryInfo.style.scss";
 import axios from "axios";
 import BorderCountriesBtn from "../BorderCountriesBtn";
 import { populationFormatting } from "../../util/Population/Population";
+import { CountryAPI } from "../../constant/CountryAPI";
+import { useParams } from "react-router-dom";
+
+const { FIND_COUNTRY_BY_COUNTRY_CODE_URL } = CountryAPI;
 
 const SingleCountryInfo = () => {
   const [country, setCountry]: any = useState([]);
-  const [borderCountries, setBorderCountries] = useState<string[]>([]);
+  const [borderCountries, setBorderCountries]: any = useState([]);
+  let { cca3 }: any = useParams();
 
   const getCountryAndBorderData = async () => {
     const data = await getCountryData();
 
-    const [{ countryObj }] = data;
+    setCountry([data]);
 
-    console.log(countryObj);
+    const { borders } = data;
 
-    data[0].borders.forEach(async (countryCode: string) => {
+    borders.forEach(async (countryCode: string) => {
       const {
         data: { name },
       }: any = await axios.get(
-        `https://restcountries.com/v2/alpha/${countryCode}`
+        `${FIND_COUNTRY_BY_COUNTRY_CODE_URL}${countryCode}`
       );
 
-      setBorderCountries((prevState: string[]) => [...prevState, name]);
+      setBorderCountries((prevState: any) => [
+        ...prevState,
+        {
+          name,
+          countryCode,
+        },
+      ]);
     });
   };
 
   const getCountryData = async () => {
     try {
       const { data } = await axios.get(
-        "https://restcountries.com/v2/name/belgium"
+        `${FIND_COUNTRY_BY_COUNTRY_CODE_URL}${cca3}`
       );
-      setCountry(data);
+
       return data;
     } catch (error: any) {
       return error;
@@ -47,7 +58,7 @@ const SingleCountryInfo = () => {
       <div className="flag">
         <img
           className="flag-img"
-          src={country[0]?.flags.png}
+          src={country[0]?.flags.svg}
           alt={country[0]?.name + " flag"}
         />
       </div>
