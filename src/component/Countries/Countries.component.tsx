@@ -7,7 +7,7 @@ import { CountryAPI } from "../../constant/CountryAPI";
 const { GET_ALL_COUNTRY_DATA_URL } = CountryAPI;
 
 const Countries = () => {
-  const [countries, setCountries]: any = useState([]);
+  const [countries, setCountries] = useState<{}[]>([]);
 
   const getCountriesData = async () => {
     try {
@@ -24,7 +24,7 @@ const Countries = () => {
 
   return (
     <section className="countries-container">
-      {countries.map((country: any, index: any) => (
+      {countries.map((country: any, index: number) => (
         <CountryCard country={country} key={index} />
       ))}
     </section>

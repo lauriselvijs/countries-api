@@ -2,6 +2,7 @@ import React from "react";
 import { populationFormatting } from "../../util/Population/Population";
 import "./CountryCard.style.scss";
 import { Link } from "react-router-dom";
+import { ICountryCard } from "./CountryCard.d";
 
 const CountryCard = ({
   country: {
@@ -12,7 +13,7 @@ const CountryCard = ({
     capital,
     flags: { png },
   },
-}: any) => {
+}: ICountryCard) => {
   return (
     <div className="countries-card">
       <Link to={`/country/${cca3}`}>

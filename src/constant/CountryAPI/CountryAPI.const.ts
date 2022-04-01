@@ -4,5 +4,5 @@ export const FIND_COUNTRY_BY_COUNTRY_CODE_URL =
 export const FIND_COUNTRY_BY_REGION_BLOCK_URL =
   "https://restcountries.com/v2/regionalbloc/";
 export const FIND_COUNTRY_BY_CONTINENT_URL =
-  "https://restcountries.com/v2/continent/";
+  "https://restcountries.com/v3.1/region/";
 export const FIND_COUNTRY_BY_NAME_URL = "https://restcountries.com/v2/name/";

@@ -1,3 +1,3 @@
-export interface WrapperProps {
+export interface IWrapperProps {
   children: ReactChild | ReactChildren;
 }

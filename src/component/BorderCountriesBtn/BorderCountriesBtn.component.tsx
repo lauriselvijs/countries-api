@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./BorderCountriesBtn.style.scss";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { IBorderCountries } from "../../type-definition/Country";
 
-const BorderCountriesBtn = ({ borderCountries }: any) => {
-  const { cca3 } = useParams();
-
-  useEffect(() => {}, [cca3]);
-
+const BorderCountriesBtn = ({ borderCountries }: IBorderCountries) => {
   return (
     <div className="border-countries-btn-container">
-      {borderCountries.map(({ countryCode, name }: any, index: any) => (
+      {borderCountries?.map(({ countryCode, name }, index: number) => (
         <Link key={index} to={`/country/${countryCode}`}>
           <button className="border-countries-btn">{name}</button>
         </Link>

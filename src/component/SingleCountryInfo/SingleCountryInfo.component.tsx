@@ -5,22 +5,53 @@ import BorderCountriesBtn from "../BorderCountriesBtn";
 import { populationFormatting } from "../../util/Population/Population";
 import { CountryAPI } from "../../constant/CountryAPI";
 import { useParams } from "react-router-dom";
+import {
+  IBorderCountries,
+  ICountry,
+  ICountryState,
+  ICountryParam,
+} from "../../type-definition/Country";
 
 const { FIND_COUNTRY_BY_COUNTRY_CODE_URL } = CountryAPI;
 
 const SingleCountryInfo = () => {
-  const [country, setCountry]: any = useState([]);
-  const [borderCountries, setBorderCountries]: any = useState([]);
-  let { cca3 }: any = useParams();
+  const [country, setCountry] = useState<Partial<ICountryState>>({});
+  const [borderCountries, setBorderCountries] = useState<
+    IBorderCountries["borderCountries"]
+  >([]);
+  let { cca3 } = useParams<ICountryParam["cca3"]>();
+
+  console.log(borderCountries);
 
   const getCountryAndBorderData = async () => {
-    const data = await getCountryData();
+    const {
+      flags: { svg },
+      nativeName,
+      name,
+      population,
+      region,
+      subregion,
+      capital,
+      topLevelDomain: [countryDomain],
+      currencies,
+      languages,
+      borders,
+    }: ICountry = await getCountryData();
 
-    setCountry([data]);
+    setCountry({
+      flag: svg,
+      nativeName,
+      population,
+      region,
+      name,
+      subregion,
+      capital,
+      countryDomain: [countryDomain],
+      languages,
+      currencies,
+    });
 
-    const { borders } = data;
-
-    borders.forEach(async (countryCode: string) => {
+    borders?.forEach(async (countryCode: string) => {
       const {
         data: { name },
       }: any = await axios.get(
@@ -50,41 +81,51 @@ const SingleCountryInfo = () => {
   };
 
   useEffect(() => {
+    setBorderCountries([]);
     getCountryAndBorderData();
-  }, []);
+  }, [cca3]);
+
+  const {
+    flag,
+    nativeName,
+    name,
+    population,
+    region,
+    subregion,
+    capital,
+    countryDomain,
+    languages,
+    currencies,
+  } = country;
 
   return (
     <div className="single-country-info">
       <div className="flag">
-        <img
-          className="flag-img"
-          src={country[0]?.flags.svg}
-          alt={country[0]?.name + " flag"}
-        />
+        <img className="flag-img" src={flag} alt={name + " flag"} />
       </div>
       <div className="country-info-container">
-        <div className="country-name">{country[0]?.name}</div>
+        <div className="country-name">{name}</div>
         <div className="country-info">
           <div className="country-info-left-section">
             <div className="native-name">
               <span className="native-name-text">Native Name: </span>
-              {country[0]?.nativeName}
+              {nativeName}
             </div>
             <div className="country-population">
               <span className="country-population-text">Population: </span>
-              {populationFormatting(country[0]?.population)}
+              {populationFormatting(population)}
             </div>
             <div className="country-region">
               <span className="country-region-text">Region: </span>
-              {country[0]?.region}
+              {region}
             </div>
             <div className="country-subregion">
               <span className="country-subregion-text">Sub Region: </span>
-              {country[0]?.subregion}
+              {subregion}
             </div>
             <div className="country-capital">
               <span className="country-capital-text">Capital: </span>
-              {country[0]?.capital}
+              {capital}
             </div>
           </div>
           <div className="country-info-right-section">
@@ -92,18 +133,23 @@ const SingleCountryInfo = () => {
               <span className="country-top-level-domain-text">
                 Top Level Domain:{" "}
               </span>
-              {country[0]?.topLevelDomain[0]}
+              {countryDomain}
             </div>
             <div className="country-currencies">
               <span className="country-currencies-text">Currencies: </span>{" "}
-              {country[0]?.currencies[0]?.name}
+              {currencies?.map(({ name }: any, index: number) => (
+                <span className="country-currencies" key={index}>
+                  {name}
+                  {currencies?.length !== index + 1 && ","}{" "}
+                </span>
+              ))}
             </div>
             <div className="country-languages">
               <span className="country-languages-text">Languages: </span>
-              {country[0]?.languages.map(({ name }: any, index: number) => (
+              {languages?.map(({ name }: any, index: number) => (
                 <span className="country-language" key={index}>
                   {name}
-                  {country[0]?.languages.length !== index + 1 && ","}{" "}
+                  {languages?.length !== index + 1 && ","}{" "}
                 </span>
               ))}
             </div>

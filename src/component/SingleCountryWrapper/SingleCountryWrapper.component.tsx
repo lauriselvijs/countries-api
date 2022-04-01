@@ -1,8 +1,8 @@
 import React from "react";
 import "./SingleCountryWrapper.style.scss";
-import { WrapperProps } from "../../type-definition/Wrapper";
+import { IWrapperProps } from "../../type-definition/Wrapper";
 
-const SingleCountryWrapper = ({ children }: WrapperProps) => {
+const SingleCountryWrapper = ({ children }: IWrapperProps) => {
   return <div className="single-country-wrapper">{children}</div>;
 };
 
