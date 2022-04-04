@@ -3,11 +3,17 @@ import "./Countries.style.scss";
 import axios from "axios";
 import CountryCard from "../CountryCard";
 import { CountryAPI } from "../../constant/CountryAPI";
+import { ICountryCard } from "../../type-definition/Country";
+import { useDispatch, useSelector } from "react-redux";
+import { State } from "../../store/reducer";
 
 const { GET_ALL_COUNTRY_DATA_URL } = CountryAPI;
 
 const Countries = () => {
-  const [countries, setCountries] = useState<{}[]>([]);
+  const [countries, setCountries] = useState<ICountryCard[]>([]);
+
+  const countryData = useSelector((state: State) => state.country.countryData);
+  const dispatch = useDispatch();
 
   const getCountriesData = async () => {
     try {

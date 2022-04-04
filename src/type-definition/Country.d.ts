@@ -32,6 +32,17 @@ export interface ICountryState {
   languages: { name: string }[];
 }
 
-export interface ICountryParam {
-  cca3: string;
+export interface ICountryCard {
+  country: {
+    name: { common: string };
+    cca3: string;
+    population: number;
+    region: string;
+    capital: string;
+    flags: { png: string };
+  };
+}
+
+export interface BorderCountryNames {
+  borderCountries: { name: string; countryCode: string }[];
 }

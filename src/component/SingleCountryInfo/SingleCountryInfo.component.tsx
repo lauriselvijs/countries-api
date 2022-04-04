@@ -9,7 +9,6 @@ import {
   IBorderCountries,
   ICountry,
   ICountryState,
-  ICountryParam,
 } from "../../type-definition/Country";
 
 const { FIND_COUNTRY_BY_COUNTRY_CODE_URL } = CountryAPI;
@@ -19,7 +18,7 @@ const SingleCountryInfo = () => {
   const [borderCountries, setBorderCountries] = useState<
     IBorderCountries["borderCountries"]
   >([]);
-  let { cca3 } = useParams<ICountryParam["cca3"]>();
+  let { cca3 } = useParams<string>();
 
   console.log(borderCountries);
 

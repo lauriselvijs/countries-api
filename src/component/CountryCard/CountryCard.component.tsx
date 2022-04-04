@@ -2,7 +2,7 @@ import React from "react";
 import { populationFormatting } from "../../util/Population/Population";
 import "./CountryCard.style.scss";
 import { Link } from "react-router-dom";
-import { ICountryCard } from "./CountryCard.d";
+import { ICountryCard } from "../../type-definition/Country";
 
 const CountryCard = ({
   country: {
