@@ -22,6 +22,11 @@
     line-height: 2;
     font-size: $detail-page-font-size;
 
+    &-dark-mode {
+      @extend .country-info-container;
+      color: $white;
+    }
+
     .country-name {
       display: flex;
       align-items: flex-start;
@@ -106,6 +111,37 @@
         padding-top: 50px;
         width: 90vw;
         height: 60vw;
+      }
+    }
+
+    .country-info-container {
+      .country-info {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .border-countries {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .single-country-info {
+    padding: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .flag {
+      &-img {
+        padding-top: 50px;
+        width: 60vw;
+        height: 30vw;
       }
     }
 

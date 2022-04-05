@@ -1,52 +1,44 @@
 import { Country } from "./country.action.type";
+import { ICountryCard, ISingleCountry } from "../../type-definition/Country.d";
+import { IError } from "../../type-definition/Error";
 
 interface ISetLoading {
   type: Country.SET_LOADING;
-  payload: boolean;
 }
 
 interface ISetError {
   type: Country.SET_ERROR;
-  payload: any[];
+  payload: IError;
 }
 
 interface IClearError {
   type: Country.CLEAR_ERROR;
+  payload: IError;
 }
 
-interface IClearState {
-  type: Country.CLEAR_STATE;
+interface IClearSingleCountryState {
+  type: Country.CLEAR_SINGLE_COUNTRY_STATE;
 }
 
-export interface ICountryData {
+interface IClearCountriesState {
+  type: Country.CLEAR_COUNTRIES_STATE;
+}
+
+interface IClearBorderCountriesState {
+  type: Country.CLEAR_BORDER_COUNTRIES_STATE;
+}
+
+interface ICountryData {
   type: Country.GET_COUNTRY_DATA;
-  payload: {
-    flag: string;
-    nativeName: string;
-    name: string;
-    population: number;
-    region: string;
-    subregion: string;
-    capital: string;
-    countryDomain: string[];
-    currencies: { name: string }[];
-    languages: { name: string }[];
-  }[];
+  payload: ICountryCard["country"][];
 }
 
-export interface ICountryCard {
+interface ISingleCountryData {
   type: Country.GET_SINGLE_COUNTRY_DATA;
-  payload: {
-    name: { common: string };
-    cca3: string;
-    population: number;
-    region: string;
-    capital: string;
-    flags: { png: string };
-  };
+  payload: ISingleCountry;
 }
 
-export interface IBorderCountryNames {
+interface IBorderCountryNames {
   type: Country.GET_BORDER_COUNTRY_NAMES;
   payload: {
     name: string;
@@ -57,7 +49,10 @@ export interface IBorderCountryNames {
 export type CountryActions =
   | ISetLoading
   | ISetError
+  | IClearError
   | ICountryData
-  | ICountryCard
+  | ISingleCountryData
   | IBorderCountryNames
-  | IClearError;
+  | IClearSingleCountryState
+  | IClearCountriesState
+  | IClearBorderCountriesState;

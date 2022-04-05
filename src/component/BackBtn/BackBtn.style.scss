@@ -14,6 +14,13 @@
   font-weight: $font-weight-light;
   text-indent: 20px;
 
+  &-dark-mode {
+    @extend .back-button;
+    @include border-shadow-dark-mode;
+    background-color: $dark-blue-dark-mode-elements;
+    color: $white;
+  }
+
   .bs-arrow-left {
     position: absolute;
     top: 12.5px;

@@ -5,7 +5,7 @@ export interface IBorderCountries {
   }[];
 }
 
-export interface ICountry {
+export interface ISingleCountry {
   flags: { svg: string };
   nativeName: string;
   name: string;
@@ -13,23 +13,10 @@ export interface ICountry {
   region: string;
   subregion: string;
   capital: string;
-  topLevelDomain: [countryDomain: string];
+  topLevelDomain: [{ countryDomain: string }];
   currencies: { name: string }[];
   languages: { name: string }[];
   borders?: string[];
-}
-
-export interface ICountryState {
-  flag: string;
-  nativeName: string;
-  name: string;
-  population: number;
-  region: string;
-  subregion: string;
-  capital: string;
-  countryDomain: string[];
-  currencies: { name: string }[];
-  languages: { name: string }[];
 }
 
 export interface ICountryCard {
@@ -41,8 +28,4 @@ export interface ICountryCard {
     capital: string;
     flags: { png: string };
   };
-}
-
-export interface BorderCountryNames {
-  borderCountries: { name: string; countryCode: string }[];
 }

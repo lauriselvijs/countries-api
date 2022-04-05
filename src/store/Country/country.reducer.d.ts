@@ -1,26 +1,10 @@
-export interface IcountryInitialState {
+import { ISingleCountry, ICountryCard } from "../../type-definition/Country";
+
+export interface ICountryInitialState {
   loading: boolean;
-  error: any[];
-  countryData: {
-    flag: string;
-    nativeName: string;
-    name: string;
-    population: number;
-    region: string;
-    subregion: string;
-    capital: string;
-    countryDomain: string[];
-    currencies: { name: string }[];
-    languages: { name: string }[];
-  }[];
-  countryCard: {
-    name: { common: string };
-    cca3: string;
-    population: number;
-    region: string;
-    capital: string;
-    flags: { png: string };
-  };
+  error: IError;
+  singleCountry: ISingleCountry;
+  countries: ICountryCard["country"][];
   borderCountries: {
     name: string;
     countryCode: string;

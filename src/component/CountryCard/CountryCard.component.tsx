@@ -15,7 +15,7 @@ const CountryCard = ({
   },
 }: ICountryCard) => {
   return (
-    <div className="countries-card">
+    <section className="countries-card-dark-mode">
       <Link to={`/country/${cca3}`}>
         <img className="country-flag" src={png} alt={common + " flag"} />
       </Link>
@@ -34,7 +34,7 @@ const CountryCard = ({
           {capital}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

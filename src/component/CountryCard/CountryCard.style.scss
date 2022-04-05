@@ -4,10 +4,19 @@
   @include border-shadow;
   background-color: $white;
 
+  &-dark-mode {
+    @extend .countries-card;
+    @include border-shadow-dark-mode;
+    background-color: $dark-blue-dark-mode-elements;
+    color: $white;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
   .country-flag {
-    &:hover {
-      transform: scale(1.1);
-    }
+    cursor: default;
   }
 
   .countries-card-contents {

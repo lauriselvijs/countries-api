@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 10px;
 
   &:hover {
     transform: scale(1.2);
@@ -15,6 +16,17 @@
   background-color: $white;
   font-weight: $font-weight-semi-bold;
   font-size: $detail-page-font-size;
+
+  &-d-m {
+    @extend .dark-mode-btn;
+    border: none;
+    color: $white;
+    background-color: $dark-blue-dark-mode-elements;
+  }
+}
+
+.moon-icon {
+  color: $white;
 }
 
 @media only screen and (max-width: 375px) {

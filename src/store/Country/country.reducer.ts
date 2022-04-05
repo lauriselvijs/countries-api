@@ -1,17 +1,17 @@
 import { Country } from "./country.action.type";
 import { CountryActions } from "./country.action.d";
-import { IcountryInitialState } from "./country.reducer.d";
+import { ICountryInitialState } from "./country.reducer.d";
 import { countryInitialState } from "./country.reducer.initial-state";
 
 const countryReducer = (
   state = countryInitialState,
   action: CountryActions
-): IcountryInitialState => {
+): ICountryInitialState => {
   switch (action.type) {
     case Country.SET_LOADING:
       return {
         ...state,
-        loading: action.payload,
+        loading: true,
       };
     case Country.SET_ERROR:
       return {
@@ -27,16 +27,46 @@ const countryReducer = (
       return {
         ...state,
         borderCountries: action.payload,
+        loading: false,
       };
     case Country.GET_COUNTRY_DATA:
       return {
         ...state,
-        countryData: action.payload,
+        countries: action.payload,
+        loading: false,
       };
     case Country.GET_SINGLE_COUNTRY_DATA:
       return {
         ...state,
-        countryCard: action.payload,
+        singleCountry: action.payload,
+        loading: false,
+      };
+    case Country.CLEAR_BORDER_COUNTRIES_STATE:
+      return {
+        ...state,
+        borderCountries: [],
+      };
+    case Country.CLEAR_SINGLE_COUNTRY_STATE:
+      return {
+        ...state,
+        singleCountry: {
+          flags: { svg: "" },
+          nativeName: "",
+          name: "",
+          population: 0,
+          region: "",
+          subregion: "",
+          capital: "",
+          topLevelDomain: [{ countryDomain: "" }],
+          currencies: [{ name: "" }],
+          languages: [{ name: "" }],
+          borders: [],
+        },
+      };
+    case Country.CLEAR_COUNTRIES_STATE:
+      return {
+        ...state,
+        countries: [],
       };
     default:
       return state;

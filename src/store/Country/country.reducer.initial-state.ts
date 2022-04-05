@@ -1,34 +1,21 @@
-import { IcountryInitialState } from "./country.reducer.d";
+import { ICountryInitialState } from "./country.reducer.d";
 
-export const countryInitialState: IcountryInitialState = {
+export const countryInitialState: ICountryInitialState = {
   loading: false,
-  error: [],
-  countryData: [
-    {
-      flag: "",
-      nativeName: "",
-      name: "",
-      population: 0,
-      region: "",
-      subregion: "",
-      capital: "",
-      countryDomain: [],
-      currencies: [{ name: "" }],
-      languages: [{ name: "" }],
-    },
-  ],
-  countryCard: {
-    name: { common: "" },
-    cca3: "",
+  error: {},
+  singleCountry: {
+    flags: { svg: "" },
+    nativeName: "",
+    name: "",
     population: 0,
     region: "",
+    subregion: "",
     capital: "",
-    flags: { png: "" },
+    topLevelDomain: [{ countryDomain: "" }],
+    currencies: [{ name: "" }],
+    languages: [{ name: "" }],
+    borders: [],
   },
-  borderCountries: [
-    {
-      name: "",
-      countryCode: "",
-    },
-  ],
+  countries: [],
+  borderCountries: [],
 };

@@ -6,6 +6,13 @@
   .border-countries-btn {
     @include border-shadow;
 
+    &-dark-mode {
+      @extend .border-countries-btn;
+      @include border-shadow-dark-mode;
+      background-color: $dark-blue-dark-mode-elements;
+      color: $white;
+    }
+
     width: fit-content;
     height: fit-content;
     padding: 5px 20px;

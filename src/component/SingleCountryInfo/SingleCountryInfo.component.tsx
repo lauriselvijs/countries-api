@@ -1,108 +1,60 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./SingleCountryInfo.style.scss";
-import axios from "axios";
 import BorderCountriesBtn from "../BorderCountriesBtn";
 import { populationFormatting } from "../../util/Population/Population";
-import { CountryAPI } from "../../constant/CountryAPI";
 import { useParams } from "react-router-dom";
-import {
-  IBorderCountries,
-  ICountry,
-  ICountryState,
-} from "../../type-definition/Country";
-
-const { FIND_COUNTRY_BY_COUNTRY_CODE_URL } = CountryAPI;
+import { useDispatch, useSelector } from "react-redux";
+import { State } from "../../store/reducer";
+import { bindActionCreators } from "redux";
+import { countryActions } from "../../store/action";
 
 const SingleCountryInfo = () => {
-  const [country, setCountry] = useState<Partial<ICountryState>>({});
-  const [borderCountries, setBorderCountries] = useState<
-    IBorderCountries["borderCountries"]
-  >([]);
   let { cca3 } = useParams<string>();
 
-  console.log(borderCountries);
+  const singleCountry = useSelector(
+    (state: State) => state.country.singleCountry
+  );
 
-  const getCountryAndBorderData = async () => {
-    const {
-      flags: { svg },
-      nativeName,
-      name,
-      population,
-      region,
-      subregion,
-      capital,
-      topLevelDomain: [countryDomain],
-      currencies,
-      languages,
-      borders,
-    }: ICountry = await getCountryData();
+  const borderCountries = useSelector(
+    (state: State) => state.country.borderCountries
+  );
 
-    setCountry({
-      flag: svg,
-      nativeName,
-      population,
-      region,
-      name,
-      subregion,
-      capital,
-      countryDomain: [countryDomain],
-      languages,
-      currencies,
-    });
+  const dispatch = useDispatch();
 
-    borders?.forEach(async (countryCode: string) => {
-      const {
-        data: { name },
-      }: any = await axios.get(
-        `${FIND_COUNTRY_BY_COUNTRY_CODE_URL}${countryCode}`
-      );
-
-      setBorderCountries((prevState: any) => [
-        ...prevState,
-        {
-          name,
-          countryCode,
-        },
-      ]);
-    });
-  };
-
-  const getCountryData = async () => {
-    try {
-      const { data } = await axios.get(
-        `${FIND_COUNTRY_BY_COUNTRY_CODE_URL}${cca3}`
-      );
-
-      return data;
-    } catch (error: any) {
-      return error;
-    }
-  };
+  const { getSingleCountryData, getBorderCountryNames } = bindActionCreators(
+    countryActions,
+    dispatch
+  );
 
   useEffect(() => {
-    setBorderCountries([]);
-    getCountryAndBorderData();
+    getSingleCountryData(cca3);
   }, [cca3]);
 
+  useEffect(() => {
+    const { borders } = singleCountry;
+
+    getBorderCountryNames(borders);
+  }, [singleCountry]);
+
   const {
-    flag,
+    flags: { svg },
     nativeName,
     name,
     population,
     region,
     subregion,
     capital,
-    countryDomain,
+    topLevelDomain: [{ countryDomain }],
     languages,
     currencies,
-  } = country;
+  } = singleCountry;
 
   return (
     <div className="single-country-info">
       <div className="flag">
-        <img className="flag-img" src={flag} alt={name + " flag"} />
+        <img className="flag-img" src={svg} alt={name + " flag"} />
       </div>
-      <div className="country-info-container">
+      <div className="country-info-container-dark-mode">
         <div className="country-name">{name}</div>
         <div className="country-info">
           <div className="country-info-left-section">

@@ -7,13 +7,15 @@ import {
   GET_ALL_COUNTRY_DATA_URL,
 } from "../../constant/CountryAPI/CountryAPI.const";
 import {
-  BorderCountryNames,
+  IBorderCountries,
   ICountryCard,
+  ISingleCountry,
 } from "../../type-definition/Country";
+import { IError } from "../../type-definition/Error";
 
 export const setLoading =
-  (loading: boolean) => async (dispatch: Dispatch<CountryActions | any>) => {
-    dispatch({ type: Country.SET_LOADING, payload: loading });
+  () => async (dispatch: Dispatch<CountryActions | any>) => {
+    dispatch({ type: Country.SET_LOADING });
   };
 
 export const setError =
@@ -27,65 +29,67 @@ export const clearError =
   };
 
 export const getCountryData =
-  (error: any[]) => async (dispatch: Dispatch<CountryActions | any>) => {
-    dispatch({ type: Country.SET_ERROR, payload: error });
-
-    const onSuccess = (data: ICountryCard[]) => {
+  () => async (dispatch: Dispatch<CountryActions | any>) => {
+    const onSuccess = (data: ISingleCountry[]) => {
       dispatch({ type: Country.GET_COUNTRY_DATA, payload: data });
       return data;
     };
 
-    const onError = (error: any) => {
+    const onError = (error: IError) => {
       dispatch({ type: Country.SET_ERROR });
       return error;
     };
 
     try {
+      dispatch(setLoading());
       const { data } = await axios.get(GET_ALL_COUNTRY_DATA_URL);
-      onSuccess(data);
+      return onSuccess(data);
     } catch (error: any) {
-      onError(error);
+      return onError(error.response.data);
     }
   };
 
 export const getSingleCountryData =
-  (cca3: string) => async (dispatch: Dispatch<CountryActions | any>) => {
-    const onSuccess = (data: ICountryCard) => {
+  (cca3: string | undefined) =>
+  async (dispatch: Dispatch<CountryActions | any>) => {
+    const onSuccess = (data: ICountryCard["country"]) => {
       dispatch({ type: Country.GET_SINGLE_COUNTRY_DATA, payload: data });
       return data;
     };
 
-    const onError = (error: any) => {
+    const onError = (error: IError) => {
       dispatch({ type: Country.SET_ERROR });
       return error;
     };
 
     try {
+      dispatch(setLoading());
       const { data } = await axios.get(
         `${FIND_COUNTRY_BY_COUNTRY_CODE_URL}${cca3}`
       );
-      onSuccess(data);
+      return onSuccess(data);
     } catch (error: any) {
-      onError(error);
+      return onError(error.response.data);
     }
   };
 
 export const getBorderCountryNames =
-  (borderCountries: string[]) => async (dispatch: Dispatch<CountryActions>) => {
-    const onSuccess = (data: BorderCountryNames["borderCountries"]) => {
+  (borderCountries: string[] | undefined) =>
+  async (dispatch: Dispatch<CountryActions | any>) => {
+    const onSuccess = (data: IBorderCountries["borderCountries"]) => {
       dispatch({ type: Country.GET_BORDER_COUNTRY_NAMES, payload: data });
       return data;
     };
 
-    const onError = (error: any) => {
+    const onError = (error: IError) => {
       dispatch({ type: Country.SET_ERROR, payload: error });
       return error;
     };
 
     try {
-      let borderCountriesNames: BorderCountryNames["borderCountries"] = [];
-
-      borderCountries?.forEach(async (countryCode: string) => {
+      dispatch(setLoading());
+      let borderCountriesNames: any = [];
+      borderCountries?.forEach(async (countryCode: string, index: number) => {
         const {
           data: { name },
         }: any = await axios.get(
@@ -93,15 +97,26 @@ export const getBorderCountryNames =
         );
 
         borderCountriesNames = [...borderCountriesNames, { name, countryCode }];
+        borderCountries.length === index + 1 && onSuccess(borderCountriesNames);
       });
 
-      onSuccess(borderCountriesNames);
+      return onSuccess(borderCountriesNames);
     } catch (error: any) {
-      onError(error);
+      return onError(error);
     }
   };
 
-export const clearState =
+export const clearSingleCountryState =
   () => async (dispatch: Dispatch<CountryActions | any>) => {
-    dispatch({ type: Country.CLEAR_STATE });
+    dispatch({ type: Country.CLEAR_SINGLE_COUNTRY_STATE });
+  };
+
+export const clearCountriesState =
+  () => async (dispatch: Dispatch<CountryActions | any>) => {
+    dispatch({ type: Country.CLEAR_COUNTRIES_STATE });
+  };
+
+export const clearBorderCountriesState =
+  () => async (dispatch: Dispatch<CountryActions | any>) => {
+    dispatch({ type: Country.CLEAR_BORDER_COUNTRIES_STATE });
   };

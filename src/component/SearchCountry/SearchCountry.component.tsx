@@ -17,7 +17,6 @@ const SearchCountry = () => {
       const { data } = await axios.get(
         `${FIND_COUNTRY_BY_NAME_URL}${countrySearch.toLowerCase()}`
       );
-      console.log(data);
     } catch (e) {
       return e;
     }
@@ -25,9 +24,9 @@ const SearchCountry = () => {
 
   return (
     <div className="search-country-container">
-      <AiOutlineSearch className="search-icon" />
+      <AiOutlineSearch className="search-icon-dark-mode" />
       <input
-        className="search-country-input"
+        className="search-country-input-dark-mode"
         type="text"
         placeholder="Search for a country..."
         value={countrySearch}

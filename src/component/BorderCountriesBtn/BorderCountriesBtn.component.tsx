@@ -8,7 +8,7 @@ const BorderCountriesBtn = ({ borderCountries }: IBorderCountries) => {
     <div className="border-countries-btn-container">
       {borderCountries?.map(({ countryCode, name }, index: number) => (
         <Link key={index} to={`/country/${countryCode}`}>
-          <button className="border-countries-btn">{name}</button>
+          <button className="border-countries-btn-dark-mode">{name}</button>
         </Link>
       ))}
     </div>

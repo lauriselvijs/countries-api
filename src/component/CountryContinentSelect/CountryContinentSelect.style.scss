@@ -7,11 +7,20 @@
   position: relative;
   border-radius: $border-radius;
 
+  &-dark-mode {
+    @extend .country-continent-container;
+    background-color: $dark-blue-dark-mode-elements;
+  }
+
   .country-continent-select-arrow {
     position: absolute;
     top: 15px;
     left: 155px;
     z-index: 1;
+
+    &-dark-mode {
+      @extend .country-continent-select-arrow;
+    }
   }
 
   .filter-by-region {
@@ -24,28 +33,47 @@
     padding: 10px 20px;
     text-align: left;
 
+    &-dark-mode {
+      @extend .filter-by-region;
+      @include border-shadow-dark-mode;
+      background-color: $dark-blue-dark-mode-elements;
+      color: $white;
+    }
+
     &:hover {
       transform: scale(1.2);
     }
   }
 
   .continent-list {
+    @extend .country-continent-container;
+
     position: absolute;
     width: 180px;
     top: 30px;
-
-    @extend .country-continent-container;
     list-style-type: none;
     padding: 0px 0px;
     text-align: left;
+
+    &-dark-mode {
+      @extend .continent-list;
+      background-color: $dark-blue-dark-mode-elements;
+      color: $white;
+    }
 
     .continent {
       padding: 5px 20px;
       cursor: default;
 
+      // &-dark-mode {
+      //   @extend .continent;
+      //   &:hover {
+      //     background-color: $dark-gray-dark-mode-shadow;
+      //   }
+      // }
+
       &:hover {
         background-color: $dark-gray-light-mode-shadow;
-        transform: scale(1.2) translateX(10px);
         border-radius: $border-radius;
       }
     }

@@ -1,8 +1,15 @@
 @import "./style/main";
 
 body {
+  margin: 0;
+}
+
+.app {
   background-color: $very-light-gray-light-mode-bg;
   font-family: $font-family;
-  color: $very-dark-blue-light-mode-text;
-  margin: 0;
+
+  &-dark-mode {
+    @extend .app;
+    background-color: $very-dark-blue-dark-mode-bg;
+  }
 }

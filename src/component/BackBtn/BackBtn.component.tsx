@@ -9,7 +9,7 @@ const { BACK } = BtnName;
 const BackBtn = () => {
   return (
     <Link to="/">
-      <button className="back-button">
+      <button className="back-button-dark-mode">
         <BsArrowLeft className="bs-arrow-left" />
         {BACK}
       </button>

@@ -3,6 +3,11 @@
 .title {
   font-weight: $font-weight-extra-bold;
   font-size: $title-font-size;
+
+  &-dark-mode {
+    @extend .title;
+    color: $white;
+  }
 }
 
 @media only screen and (max-width: 375px) {

@@ -10,7 +10,7 @@ const ClearSelect = () => {
   };
 
   return (
-    <div className="clear-select" onClick={onClearSelectClickBtn}>
+    <div className="clear-select-dark-mode" onClick={onClearSelectClickBtn}>
       {CLEAR_SELECT}
     </div>
   );

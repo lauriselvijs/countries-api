@@ -1,3 +1,7 @@
 @mixin border-shadow {
   box-shadow: 0 0px 8px 0 $dark-gray-light-mode-shadow;
 }
+
+@mixin border-shadow-dark-mode {
+  box-shadow: 0 0px 8px 0 $dark-gray-dark-mode-shadow;
+}
