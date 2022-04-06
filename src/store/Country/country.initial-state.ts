@@ -1,4 +1,4 @@
-import { ICountryInitialState } from "./country.reducer.d";
+import { ICountryInitialState } from "./country.initial-state.d";
 
 export const countryInitialState: ICountryInitialState = {
   loading: false,

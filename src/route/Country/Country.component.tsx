@@ -11,17 +11,15 @@ import Loader from "../../component/Loader";
 const Country = () => {
   const loading = useSelector((state: State) => state.country.loading);
 
-  console.log(loading);
-
   return (
     <main className="country">
+      <NavBarWrapper>
+        <BackBtn />
+      </NavBarWrapper>
       {loading ? (
         <Loader />
       ) : (
         <>
-          <NavBarWrapper>
-            <BackBtn />
-          </NavBarWrapper>
           <SingleCountryWrapper>
             <SingleCountryInfo />
           </SingleCountryWrapper>

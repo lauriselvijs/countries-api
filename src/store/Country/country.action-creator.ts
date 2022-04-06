@@ -3,7 +3,9 @@ import { Country } from "./country.action.type";
 import { CountryActions } from "./country.action.d";
 import { Dispatch } from "react";
 import {
+  FIND_COUNTRY_BY_CONTINENT_URL,
   FIND_COUNTRY_BY_COUNTRY_CODE_URL,
+  FIND_COUNTRY_BY_NAME_URL,
   GET_ALL_COUNTRY_DATA_URL,
 } from "../../constant/CountryAPI/CountryAPI.const";
 import {
@@ -30,7 +32,7 @@ export const clearError =
 
 export const getCountryData =
   () => async (dispatch: Dispatch<CountryActions | any>) => {
-    const onSuccess = (data: ISingleCountry[]) => {
+    const onSuccess = (data: ICountryCard[]) => {
       dispatch({ type: Country.GET_COUNTRY_DATA, payload: data });
       return data;
     };
@@ -52,7 +54,7 @@ export const getCountryData =
 export const getSingleCountryData =
   (cca3: string | undefined) =>
   async (dispatch: Dispatch<CountryActions | any>) => {
-    const onSuccess = (data: ICountryCard["country"]) => {
+    const onSuccess = (data: ISingleCountry) => {
       dispatch({ type: Country.GET_SINGLE_COUNTRY_DATA, payload: data });
       return data;
     };
@@ -88,7 +90,7 @@ export const getBorderCountryNames =
 
     try {
       dispatch(setLoading());
-      let borderCountriesNames: any = [];
+      let borderCountriesNames: IBorderCountries["borderCountries"] = [];
       borderCountries?.forEach(async (countryCode: string, index: number) => {
         const {
           data: { name },
@@ -101,6 +103,48 @@ export const getBorderCountryNames =
       });
 
       return onSuccess(borderCountriesNames);
+    } catch (error: any) {
+      return onError(error);
+    }
+  };
+
+export const getCountryDataBySearch =
+  (country: string) => async (dispatch: Dispatch<CountryActions | any>) => {
+    const onSuccess = (data: ICountryCard[]) => {
+      dispatch({ type: Country.GET_COUNTRY_DATA_BY_SEARCH, payload: data });
+    };
+
+    const onError = (error: IError) => {
+      dispatch({ type: Country.SET_ERROR, payload: error });
+    };
+
+    try {
+      dispatch(setLoading());
+      const { data }: any = await axios.get(
+        `${FIND_COUNTRY_BY_NAME_URL}${country.toLowerCase()}`
+      );
+      return onSuccess(data);
+    } catch (error: any) {
+      return onError(error);
+    }
+  };
+
+export const getCountryDataByContinent =
+  (continent: string) => async (dispatch: Dispatch<CountryActions | any>) => {
+    const onSuccess = (data: ICountryCard[]) => {
+      dispatch({ type: Country.GET_COUNTRY_DATA__BY_CONTINENT, payload: data });
+    };
+
+    const onError = (error: IError) => {
+      dispatch({ type: Country.SET_ERROR, payload: error });
+    };
+
+    try {
+      dispatch(setLoading());
+      const { data } = await axios.get(
+        `${FIND_COUNTRY_BY_CONTINENT_URL}${continent.toLowerCase()}`
+      );
+      return onSuccess(data);
     } catch (error: any) {
       return onError(error);
     }

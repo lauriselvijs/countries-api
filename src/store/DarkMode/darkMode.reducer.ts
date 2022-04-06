@@ -1,7 +1,7 @@
 import { DarkMode } from "./darkMode.action-type";
 import { DarkModeActions } from "./darkMode.action.d";
-import { IinitialDarkModeState } from "./darkMode.reducer.d";
-import { initialDarkModeState } from "./darkMode.reducer.initial-state";
+import { IinitialDarkModeState } from "./darkMode.initial-state.d";
+import { initialDarkModeState } from "./darkMode.initial-state";
 
 const darkModeReducer = (
   state = initialDarkModeState,

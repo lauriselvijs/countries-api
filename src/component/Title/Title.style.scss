@@ -3,6 +3,8 @@
 .title {
   font-weight: $font-weight-extra-bold;
   font-size: $title-font-size;
+  cursor: default;
+  color: $black;
 
   &-dark-mode {
     @extend .title;

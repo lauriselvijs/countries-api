@@ -14,15 +14,15 @@ const Root = () => {
 
   return (
     <main className="root">
+      <NavBarWrapper>
+        <SearchCountry />
+        <ClearSelect />
+        <CountryContinentSelect />
+      </NavBarWrapper>
       {loading ? (
         <Loader />
       ) : (
         <>
-          <NavBarWrapper>
-            <SearchCountry />
-            <ClearSelect />
-            <CountryContinentSelect />
-          </NavBarWrapper>
           <Countries />
         </>
       )}

@@ -20,6 +20,7 @@
 
     &-dark-mode {
       @extend .country-continent-select-arrow;
+      color: $white;
     }
   }
 
@@ -65,16 +66,8 @@
       padding: 5px 20px;
       cursor: default;
 
-      // &-dark-mode {
-      //   @extend .continent;
-      //   &:hover {
-      //     background-color: $dark-gray-dark-mode-shadow;
-      //   }
-      // }
-
       &:hover {
-        background-color: $dark-gray-light-mode-shadow;
-        border-radius: $border-radius;
+        transform: scale(1.1) translateX(10px);
       }
     }
   }

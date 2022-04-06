@@ -6,6 +6,10 @@ import { IoIosArrowUp } from "react-icons/io";
 import { BtnName } from "../../constant/BtnName";
 import { CountryAPI } from "../../constant/CountryAPI";
 import axios from "axios";
+import { State } from "../../store/reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import { countryActions } from "../../store/action";
 
 const { FIND_COUNTRY_BY_CONTINENT_URL } = CountryAPI;
 const { CONTINENT_LIST } = Continents;
@@ -14,18 +18,21 @@ const { COUNTRY_SELECT_MENU } = BtnName;
 const CountryContinentSelect = () => {
   const [showContinents, setShowContinents] = useState<boolean>(false);
 
+  const darkMode = useSelector((state: State) => state.darkMode.darkMode);
+
+  const dispatch = useDispatch();
+
+  const { getCountryDataByContinent } = bindActionCreators(
+    countryActions,
+    dispatch
+  );
+
   const onCountryContinentSelect = async (
     e: React.MouseEvent<HTMLLIElement, MouseEvent>,
     continent: string
   ) => {
-    try {
-      const { data } = await axios.get(
-        `${FIND_COUNTRY_BY_CONTINENT_URL}${continent.toLowerCase()}`
-      );
-      console.log(data);
-    } catch (error) {
-      return error;
-    }
+    getCountryDataByContinent(continent);
+    setShowContinents(!showContinents);
   };
 
   const onFilterByRegionBtnClick = () => {
@@ -35,18 +42,30 @@ const CountryContinentSelect = () => {
   return (
     <section className="country-continent-container">
       {showContinents ? (
-        <IoIosArrowDown className="country-continent-select-arrow-dark-mode" />
+        <IoIosArrowDown
+          className={
+            darkMode
+              ? "country-continent-select-arrow-dark-mode"
+              : "country-continent-select-arrow"
+          }
+        />
       ) : (
-        <IoIosArrowUp className="country-continent-select-arrow-dark-mode" />
+        <IoIosArrowUp
+          className={
+            darkMode
+              ? "country-continent-select-arrow-dark-mode"
+              : "country-continent-select-arrow"
+          }
+        />
       )}
       <button
-        className="filter-by-region-dark-mode"
+        className={darkMode ? "filter-by-region-dark-mode" : "filter-by-region"}
         onClick={onFilterByRegionBtnClick}
       >
         {COUNTRY_SELECT_MENU}
       </button>
       <ul
-        className="continent-list-dark-mode"
+        className={darkMode ? "continent-list-dark-mode" : "continent-list"}
         style={showContinents ? { display: "block" } : { display: "none" }}
       >
         {CONTINENT_LIST.map((continent: string, index: number) => (

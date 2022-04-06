@@ -33,6 +33,16 @@ interface ICountryData {
   payload: ICountryCard["country"][];
 }
 
+interface ICountrySearchData {
+  type: Country.GET_COUNTRY_DATA_BY_SEARCH;
+  payload: ICountryCard["country"][];
+}
+
+interface ICountryContinentData {
+  type: Country.GET_COUNTRY_DATA__BY_CONTINENT;
+  payload: ICountryCard["country"][];
+}
+
 interface ISingleCountryData {
   type: Country.GET_SINGLE_COUNTRY_DATA;
   payload: ISingleCountry;
@@ -55,4 +65,6 @@ export type CountryActions =
   | IBorderCountryNames
   | IClearSingleCountryState
   | IClearCountriesState
-  | IClearBorderCountriesState;
+  | IClearBorderCountriesState
+  | ICountrySearchData
+  | ICountryContinentData;

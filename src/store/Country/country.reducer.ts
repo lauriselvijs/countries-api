@@ -1,7 +1,7 @@
 import { Country } from "./country.action.type";
 import { CountryActions } from "./country.action.d";
-import { ICountryInitialState } from "./country.reducer.d";
-import { countryInitialState } from "./country.reducer.initial-state";
+import { ICountryInitialState } from "./country.initial-state.d";
+import { countryInitialState } from "./country.initial-state";
 
 const countryReducer = (
   state = countryInitialState,
@@ -29,18 +29,31 @@ const countryReducer = (
         borderCountries: action.payload,
         loading: false,
       };
-    case Country.GET_COUNTRY_DATA:
-      return {
-        ...state,
-        countries: action.payload,
-        loading: false,
-      };
     case Country.GET_SINGLE_COUNTRY_DATA:
       return {
         ...state,
         singleCountry: action.payload,
         loading: false,
       };
+    case Country.GET_COUNTRY_DATA:
+      return {
+        ...state,
+        countries: action.payload,
+        loading: false,
+      };
+    case Country.GET_COUNTRY_DATA_BY_SEARCH:
+      return {
+        ...state,
+        countries: action.payload,
+        loading: false,
+      };
+    case Country.GET_COUNTRY_DATA__BY_CONTINENT:
+      return {
+        ...state,
+        countries: action.payload,
+        loading: false,
+      };
+
     case Country.CLEAR_BORDER_COUNTRIES_STATE:
       return {
         ...state,

@@ -1,8 +1,14 @@
 @import "../../style/main";
 
+a {
+  text-decoration: none;
+}
+
 .countries-card {
   @include border-shadow;
   background-color: $white;
+  cursor: default;
+  color: $black;
 
   &-dark-mode {
     @extend .countries-card;

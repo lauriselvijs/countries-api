@@ -9,15 +9,11 @@ import { bindActionCreators } from "redux";
 import { countryActions } from "../../store/action";
 
 const SingleCountryInfo = () => {
-  let { cca3 } = useParams<string>();
-
-  const singleCountry = useSelector(
-    (state: State) => state.country.singleCountry
+  const { singleCountry, borderCountries } = useSelector(
+    (state: State) => state.country
   );
 
-  const borderCountries = useSelector(
-    (state: State) => state.country.borderCountries
-  );
+  const darkMode = useSelector((state: State) => state.darkMode.darkMode);
 
   const dispatch = useDispatch();
 
@@ -25,10 +21,6 @@ const SingleCountryInfo = () => {
     countryActions,
     dispatch
   );
-
-  useEffect(() => {
-    getSingleCountryData(cca3);
-  }, [cca3]);
 
   useEffect(() => {
     const { borders } = singleCountry;
@@ -54,7 +46,13 @@ const SingleCountryInfo = () => {
       <div className="flag">
         <img className="flag-img" src={svg} alt={name + " flag"} />
       </div>
-      <div className="country-info-container-dark-mode">
+      <div
+        className={
+          darkMode
+            ? "country-info-container-dark-mode"
+            : "country-info-container"
+        }
+      >
         <div className="country-name">{name}</div>
         <div className="country-info">
           <div className="country-info-left-section">

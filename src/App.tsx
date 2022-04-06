@@ -5,10 +5,14 @@ import DarkModeBtn from "./component/DarkModeBtn";
 import Title from "./component/Title";
 import Root from "./route/Root";
 import "./App.scss";
+import { useSelector } from "react-redux";
+import { State } from "./store/reducer";
 
 const App = () => {
+  const darkMode = useSelector((state: State) => state.darkMode.darkMode);
+
   return (
-    <div className="app-dark-mode">
+    <div className={darkMode ? "app-dark-mode" : "app"}>
       <Router>
         <HeaderWrapper>
           <Title />
