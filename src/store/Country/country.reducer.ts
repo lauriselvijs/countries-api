@@ -13,16 +13,6 @@ const countryReducer = (
         ...state,
         loading: true,
       };
-    case Country.SET_ERROR:
-      return {
-        ...state,
-        error: action.payload,
-      };
-    case Country.CLEAR_ERROR:
-      return {
-        ...state,
-        error: [],
-      };
     case Country.GET_BORDER_COUNTRY_NAMES:
       return {
         ...state,

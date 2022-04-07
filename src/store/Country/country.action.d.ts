@@ -1,19 +1,8 @@
 import { Country } from "./country.action.type";
 import { ICountryCard, ISingleCountry } from "../../type-definition/Country.d";
-import { IError } from "../../type-definition/Error";
 
 interface ISetLoading {
   type: Country.SET_LOADING;
-}
-
-interface ISetError {
-  type: Country.SET_ERROR;
-  payload: IError;
-}
-
-interface IClearError {
-  type: Country.CLEAR_ERROR;
-  payload: IError;
 }
 
 interface IClearSingleCountryState {
@@ -58,8 +47,6 @@ interface IBorderCountryNames {
 
 export type CountryActions =
   | ISetLoading
-  | ISetError
-  | IClearError
   | ICountryData
   | ISingleCountryData
   | IBorderCountryNames

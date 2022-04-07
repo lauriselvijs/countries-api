@@ -1,0 +1,64 @@
+@import "../../style/main";
+
+.country-search-container {
+  position: relative;
+
+  .search-icon {
+    position: absolute;
+    top: 14px;
+    left: 25px;
+    z-index: 1;
+
+    &-dark-mode {
+      @extend .search-icon;
+      color: $white;
+    }
+  }
+
+  .country-search-input {
+    @include border-shadow;
+
+    border: 0;
+    border-radius: $border-radius;
+    height: 40px;
+    width: 450px;
+    text-indent: 60px;
+
+    &-dark-mode {
+      @extend .country-search-input;
+      @include border-shadow-dark-mode;
+      background-color: $dark-blue-dark-mode-elements;
+      color: $white;
+
+      &::placeholder {
+        color: $white;
+        opacity: 1;
+      }
+    }
+
+    &::placeholder {
+      font-size: $homepage-item-font-size;
+      font-weight: $font-weight-light;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .country-search-container {
+    .country-search-input {
+      width: 330px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .country-search-container {
+    .country-search-input {
+      width: 320px;
+    }
+  }
+}

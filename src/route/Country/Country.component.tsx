@@ -1,8 +1,8 @@
 import React from "react";
 import "./Country.style.scss";
 import BackBtn from "../../component/BackBtn";
-import SingleCountryInfo from "../../component/SingleCountryInfo";
-import SingleCountryWrapper from "../../component/SingleCountryWrapper";
+import CountrySingleInfo from "../../component/CountrySingleInfo";
+import CountrySingleWrapper from "../../component/CountrySingleWrapper";
 import NavBarWrapper from "../../component/NavBarWrapper";
 import { useSelector } from "react-redux";
 import { State } from "../../store/reducer";
@@ -20,9 +20,9 @@ const Country = () => {
         <Loader />
       ) : (
         <>
-          <SingleCountryWrapper>
-            <SingleCountryInfo />
-          </SingleCountryWrapper>
+          <CountrySingleWrapper>
+            <CountrySingleInfo />
+          </CountrySingleWrapper>
         </>
       )}
     </main>

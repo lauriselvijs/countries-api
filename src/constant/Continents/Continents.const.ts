@@ -1,4 +1,4 @@
-export const CONTINENT_LIST = [
+export const CONTINENT_LIST: string[] = [
   "Africa",
   "America",
   "Asia",

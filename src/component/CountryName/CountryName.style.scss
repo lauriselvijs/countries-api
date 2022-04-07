@@ -1,0 +1,13 @@
+@import "../../style/main";
+
+.country-name {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  font-size: $country-name;
+  font-weight: $font-weight-extra-bold;
+  padding: 20px 0px;
+  top: 0px;
+  left: 0px;
+}

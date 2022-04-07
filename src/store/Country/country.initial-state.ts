@@ -2,7 +2,6 @@ import { ICountryInitialState } from "./country.initial-state.d";
 
 export const countryInitialState: ICountryInitialState = {
   loading: false,
-  error: {},
   singleCountry: {
     flags: { svg: "" },
     nativeName: "",

@@ -14,20 +14,11 @@ import {
   ISingleCountry,
 } from "../../type-definition/Country";
 import { IError } from "../../type-definition/Error";
+import { setError, clearError } from "../Error/error.action-creator";
 
 export const setLoading =
   () => async (dispatch: Dispatch<CountryActions | any>) => {
     dispatch({ type: Country.SET_LOADING });
-  };
-
-export const setError =
-  (error: any[]) => async (dispatch: Dispatch<CountryActions | any>) => {
-    dispatch({ type: Country.SET_ERROR, payload: error });
-  };
-
-export const clearError =
-  () => async (dispatch: Dispatch<CountryActions | any>) => {
-    dispatch({ type: Country.CLEAR_ERROR });
   };
 
 export const getCountryData =
@@ -38,7 +29,7 @@ export const getCountryData =
     };
 
     const onError = (error: IError) => {
-      dispatch({ type: Country.SET_ERROR });
+      dispatch(setError(error));
       return error;
     };
 
@@ -60,7 +51,7 @@ export const getSingleCountryData =
     };
 
     const onError = (error: IError) => {
-      dispatch({ type: Country.SET_ERROR });
+      dispatch(setError(error));
       return error;
     };
 
@@ -84,7 +75,7 @@ export const getBorderCountryNames =
     };
 
     const onError = (error: IError) => {
-      dispatch({ type: Country.SET_ERROR, payload: error });
+      dispatch(setError(error));
       return error;
     };
 
@@ -115,7 +106,7 @@ export const getCountryDataBySearch =
     };
 
     const onError = (error: IError) => {
-      dispatch({ type: Country.SET_ERROR, payload: error });
+      dispatch(setError(error));
     };
 
     try {
@@ -136,7 +127,7 @@ export const getCountryDataByContinent =
     };
 
     const onError = (error: IError) => {
-      dispatch({ type: Country.SET_ERROR, payload: error });
+      dispatch(setError(error));
     };
 
     try {
