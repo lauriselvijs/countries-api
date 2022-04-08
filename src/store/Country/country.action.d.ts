@@ -1,5 +1,9 @@
 import { Country } from "./country.action.type";
-import { ICountryCard, ISingleCountry } from "../../type-definition/Country.d";
+import {
+  ICountryCard,
+  ISingleCountry,
+  IBorderCountries,
+} from "../../type-definition/Country.d";
 
 interface ISetLoading {
   type: Country.SET_LOADING;
@@ -39,10 +43,7 @@ interface ISingleCountryData {
 
 interface IBorderCountryNames {
   type: Country.GET_BORDER_COUNTRY_NAMES;
-  payload: {
-    name: string;
-    countryCode: string;
-  }[];
+  payload: IBorderCountries["borderCountries"];
 }
 
 export type CountryActions =

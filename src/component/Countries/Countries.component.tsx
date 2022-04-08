@@ -6,9 +6,12 @@ import { State } from "../../store/reducer";
 import { bindActionCreators } from "redux";
 import { countryActions } from "../../store/action";
 import { ICountryCard } from "../../type-definition/Country";
+import Loader from "../Loader";
 
 const Countries = () => {
   const countries = useSelector((state: State) => state.country.countries);
+  const loading = useSelector((state: State) => state.country.loading);
+
   const dispatch = useDispatch();
 
   const { getCountryData } = bindActionCreators(countryActions, dispatch);
@@ -18,11 +21,21 @@ const Countries = () => {
   }, []);
 
   return (
-    <section className="countries-container">
-      {countries.map((country: ICountryCard["country"], index: number) => (
-        <CountryCard country={country} key={index} />
-      ))}
-    </section>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <section className="countries-container">
+            {countries.map(
+              (country: ICountryCard["country"], index: number) => (
+                <CountryCard country={country} key={index} />
+              )
+            )}
+          </section>
+        </>
+      )}
+    </>
   );
 };
 

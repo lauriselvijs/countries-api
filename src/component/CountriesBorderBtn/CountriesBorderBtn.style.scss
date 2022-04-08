@@ -1,41 +1,69 @@
 @import "../../style/main";
 
-.border-countries-btn-container {
-  padding-left: 15px;
+.border-countries {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  padding-top: 20px;
 
-  .border-countries-btn {
-    @include border-shadow;
+  &-text {
+    font-weight: $font-weight-semi-bold;
+  }
 
-    &-dark-mode {
-      @extend .border-countries-btn;
-      @include border-shadow-dark-mode;
-      background-color: $dark-blue-dark-mode-elements;
-      color: $white;
+  .border-countries-btn-container {
+    padding-left: 15px;
+
+    .border-countries-btn {
+      @include border-shadow;
+      width: fit-content;
+      height: fit-content;
+      padding: 5px 20px;
+      margin: 0px 5px;
+      border: none;
+      background-color: $white;
+      border-radius: $border-radius;
+      font-size: $detail-page-font-size;
+      font-weight: $font-weight-light;
+
+      &-dark-mode {
+        @extend .border-countries-btn;
+        @include border-shadow-dark-mode;
+        background-color: $dark-blue-dark-mode-elements;
+        color: $white;
+      }
+
+      &:hover {
+        transform: scale(1.2);
+      }
     }
+  }
 
-    width: fit-content;
-    height: fit-content;
-    padding: 5px 20px;
-    margin: 0px 5px;
-    border: none;
-    background-color: $white;
-    border-radius: $border-radius;
-    font-size: $detail-page-font-size;
-    font-weight: $font-weight-light;
+  @media only screen and (max-width: 375px) {
+    .border-countries {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
 
-    &:hover {
-      transform: scale(1.2);
+      &-btn-container {
+        padding-left: 0px;
+
+        &-btn {
+          margin: 5px 0px;
+        }
+      }
     }
   }
 }
 
-@media only screen and (max-width: 375px) {
-  .border-countries-btn-container {
-    padding-left: 0px;
+@media screen and (max-width: 1000px) {
+  .border-countries {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
-    .border-countries-btn {
-      margin: 5px 0px;
-      margin-right: 10px;
+    &-btn-container {
+      padding-left: 0px;
     }
   }
 }

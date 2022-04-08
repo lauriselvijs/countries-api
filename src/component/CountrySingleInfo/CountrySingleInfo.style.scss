@@ -2,23 +2,16 @@
 
 .country-single-info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 40px 60px;
   gap: 10vw;
-
-  .flag {
-    &-img {
-      width: 40vw;
-      height: 25vw;
-    }
-  }
+  height: 100vh;
 
   .country-info-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100%;
     line-height: 2;
     font-size: $detail-page-font-size;
 
@@ -27,74 +20,13 @@
       color: $white;
     }
 
-    .country-name {
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-      width: 100%;
-      font-size: $country-name;
-      font-weight: $font-weight-extra-bold;
-      padding: 20px 0px;
-      top: 0px;
-      left: 0px;
-    }
-
-    .border-countries {
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-      width: 100%;
-      padding-top: 20px;
-
-      &-text {
-        font-weight: $font-weight-semi-bold;
-      }
-    }
-
     .country-info {
       display: flex;
       align-items: flex-start;
-      gap: 160px;
-      width: 100%;
+      gap: 190px;
       line-height: 2;
       font-size: $detail-page-font-size;
       position: relative;
-
-      &-left-section {
-        .native-name-text {
-          font-weight: $font-weight-semi-bold;
-        }
-
-        .country-population-text {
-          @extend .native-name-text;
-        }
-
-        .country-region-text {
-          @extend .native-name-text;
-        }
-
-        .country-subregion-text {
-          @extend .native-name-text;
-        }
-
-        .country-capital-text {
-          @extend .native-name-text;
-        }
-      }
-
-      &-right-section {
-        .country-top-level-domain-text {
-          font-weight: $font-weight-semi-bold;
-        }
-
-        .country-currencies-text {
-          @extend .country-top-level-domain-text;
-        }
-
-        .country-languages-text {
-          @extend .country-top-level-domain-text;
-        }
-      }
     }
   }
 }
@@ -105,24 +37,14 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-
-    .flag {
-      padding-top: 50px;
-      width: 90vw;
-      height: 60vw;
-    }
+    height: 100vh;
 
     .country-info-container {
+      align-items: flex-start;
       .country-info {
         display: flex;
         flex-direction: column;
         gap: 40px;
-      }
-
-      .border-countries {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
       }
     }
   }
@@ -134,25 +56,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-
-    .flag {
-      padding-top: 50px;
-      width: 60vw;
-      height: 30vw;
-    }
-
-    .country-info-container {
-      .country-info {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-      }
-
-      .border-countries {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-      }
-    }
+    height: 120vh;
   }
 }

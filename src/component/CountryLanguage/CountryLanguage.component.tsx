@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { State } from "../../store/reducer";
+import "./CountryLanguage.style.scss";
 
 const CountryLanguage = () => {
   const { languages } = useSelector(

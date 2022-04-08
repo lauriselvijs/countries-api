@@ -1,12 +1,10 @@
 import React from "react";
 import { populationFormatting } from "../../util/Population/Population";
 import "./CountryCard.style.scss";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ICountryCard } from "../../type-definition/Country";
 import { State } from "../../store/reducer";
-import { useDispatch, useSelector } from "react-redux";
-import { bindActionCreators } from "redux";
-import { countryActions } from "../../store/action";
+import { useSelector } from "react-redux";
 
 const CountryCard = ({
   country: {
@@ -20,16 +18,8 @@ const CountryCard = ({
 }: ICountryCard) => {
   const darkMode = useSelector((state: State) => state.darkMode.darkMode);
 
-  const dispatch = useDispatch();
-
-  const { getSingleCountryData } = bindActionCreators(countryActions, dispatch);
-
-  const onCardClick = () => {
-    getSingleCountryData(countryCode);
-  };
-
   return (
-    <Link to={`/country/${countryCode}`} onClick={onCardClick}>
+    <Link to={`/country/${countryCode}`}>
       <section
         className={darkMode ? "countries-card-dark-mode" : "countries-card"}
       >

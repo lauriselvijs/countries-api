@@ -13,16 +13,16 @@ const countryReducer = (
         ...state,
         loading: true,
       };
-    case Country.GET_BORDER_COUNTRY_NAMES:
-      return {
-        ...state,
-        borderCountries: action.payload,
-        loading: false,
-      };
     case Country.GET_SINGLE_COUNTRY_DATA:
       return {
         ...state,
         singleCountry: action.payload,
+        loading: false,
+      };
+    case Country.GET_BORDER_COUNTRY_NAMES:
+      return {
+        ...state,
+        borderCountries: action.payload,
         loading: false,
       };
     case Country.GET_COUNTRY_DATA:
@@ -60,7 +60,7 @@ const countryReducer = (
           region: "",
           subregion: "",
           capital: "",
-          topLevelDomain: [{ countryDomain: "" }],
+          topLevelDomain: [],
           currencies: [{ name: "" }],
           languages: [{ name: "" }],
           borders: [],

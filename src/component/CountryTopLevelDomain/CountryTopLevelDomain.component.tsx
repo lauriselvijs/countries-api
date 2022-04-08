@@ -6,7 +6,7 @@ import "./CountryTopLevelDomain.style.scss";
 const CountryTopLevelDomain = () => {
   const {
     topLevelDomain: [countryDomain],
-  } = useSelector((state: State) => state.country.singleCountry);
+  } = useSelector((state: State) => state.country?.singleCountry);
 
   return (
     <div className="country-top-level-domain">

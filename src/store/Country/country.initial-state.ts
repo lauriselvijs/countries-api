@@ -10,7 +10,7 @@ export const countryInitialState: ICountryInitialState = {
     region: "",
     subregion: "",
     capital: "",
-    topLevelDomain: [{ countryDomain: "" }],
+    topLevelDomain: [],
     currencies: [{ name: "" }],
     languages: [{ name: "" }],
     borders: [],
