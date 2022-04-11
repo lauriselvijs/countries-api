@@ -5,13 +5,11 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { BtnName } from "../../constant/BtnName";
 import { CountryAPI } from "../../constant/CountryAPI";
-import axios from "axios";
 import { State } from "../../store/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { countryActions } from "../../store/action";
 
-const { FIND_COUNTRY_BY_CONTINENT_URL } = CountryAPI;
 const { CONTINENT_LIST } = Continents;
 const { COUNTRY_SELECT_MENU } = BtnName;
 
