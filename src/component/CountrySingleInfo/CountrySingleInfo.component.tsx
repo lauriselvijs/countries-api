@@ -22,6 +22,10 @@ const CountrySingleInfo = () => {
   const { borders } = useSelector(
     (state: State) => state.country.singleCountry
   );
+  const { singleCountry, borderCountries } = useSelector(
+    (state: State) => state.country
+  );
+
   const loading = useSelector((state: State) => state.country.loading);
   const darkMode = useSelector((state: State) => state.darkMode.darkMode);
   const { cca3 } = useParams<string>();
@@ -41,6 +45,19 @@ const CountrySingleInfo = () => {
     getBorderCountryNames(borders);
   }, [borders]);
 
+  const {
+    flags: { svg },
+    nativeName,
+    name,
+    population,
+    region,
+    subregion,
+    capital,
+    topLevelDomain: [countryDomain],
+    languages,
+    currencies,
+  } = singleCountry;
+
   return (
     <>
       {loading ? (
@@ -48,7 +65,11 @@ const CountrySingleInfo = () => {
       ) : (
         <>
           <div className="country-single-info">
-            <CountryFlag />
+            <CountryFlag
+              flag={svg}
+              countryName={name}
+              className="country-single-flag-img"
+            />
             <div
               className={
                 darkMode
@@ -56,22 +77,22 @@ const CountrySingleInfo = () => {
                   : "country-info-container"
               }
             >
-              <CountryName />
+              <CountryName name={name} />
               <div className="country-info">
                 <div className="country-info-left-section">
-                  <CountryNativeName />
-                  <CountryPopulation />
-                  <CountryRegion />
-                  <CountrySubregion />
-                  <CountryCapital />
+                  <CountryNativeName nativeName={nativeName} />
+                  <CountryPopulation population={population} />
+                  <CountryRegion region={region} />
+                  <CountrySubregion subregion={subregion} />
+                  <CountryCapital capital={capital} />
                 </div>
                 <div className="country-info-right-section">
-                  <CountryTopLevelDomain />
-                  <CountryCurrency />
-                  <CountryLanguage />
+                  <CountryTopLevelDomain countryDomain={countryDomain} />
+                  <CountryCurrency currencies={currencies} />
+                  <CountryLanguage languages={languages} />
                 </div>
               </div>
-              <CountriesBorderBtn />
+              <CountriesBorderBtn borderCountries={borderCountries} />
             </div>
           </div>
         </>

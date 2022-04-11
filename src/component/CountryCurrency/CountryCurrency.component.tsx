@@ -1,17 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { State } from "../../store/reducer";
 import "./CountryCurrency.style.scss";
+import PropTypes from "prop-types";
+import { ISingleCountry } from "../../type-definition/Country";
 
-const CountryCurrency = () => {
-  const { currencies } = useSelector(
-    (state: State) => state.country.singleCountry
-  );
-
+const CountryCurrency = ({
+  currencies,
+}: {
+  currencies: ISingleCountry["currencies"];
+}) => {
   return (
     <div className="country-currencies">
       <span className="country-currencies-text">Currencies: </span>{" "}
-      {currencies?.map(({ name }: any, index: number) => (
+      {currencies?.map(({ name }, index: number) => (
         <span className="country-currencies-item" key={index}>
           {name}
           {currencies?.length !== index + 1 && ","}{" "}
@@ -19,6 +19,18 @@ const CountryCurrency = () => {
       ))}
     </div>
   );
+};
+
+CountryCurrency.propTypes = {
+  currencies: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+    })
+  ),
+};
+
+CountryCurrency.defaultProps = {
+  currencies: [{ name: "" }],
 };
 
 export default CountryCurrency;

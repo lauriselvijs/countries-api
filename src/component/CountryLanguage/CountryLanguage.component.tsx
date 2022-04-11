@@ -1,17 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { State } from "../../store/reducer";
 import "./CountryLanguage.style.scss";
+import PropTypes from "prop-types";
+import { ISingleCountry } from "../../type-definition/Country";
 
-const CountryLanguage = () => {
-  const { languages } = useSelector(
-    (state: State) => state.country.singleCountry
-  );
-
+const CountryLanguage = ({
+  languages,
+}: {
+  languages: ISingleCountry["languages"];
+}) => {
   return (
     <div className="country-languages">
       <span className="country-languages-text">Languages: </span>
-      {languages?.map(({ name }: any, index: number) => (
+      {languages?.map(({ name }, index: number) => (
         <span className="country-language" key={index}>
           {name}
           {languages?.length !== index + 1 && ","}{" "}
@@ -19,6 +19,18 @@ const CountryLanguage = () => {
       ))}
     </div>
   );
+};
+
+CountryLanguage.propTypes = {
+  languages: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+    })
+  ),
+};
+
+CountryLanguage.defaultProps = {
+  languages: [{ name: "" }],
 };
 
 export default CountryLanguage;

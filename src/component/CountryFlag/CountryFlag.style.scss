@@ -1,12 +1,12 @@
 @import "../../style/main";
 
-.flag-img {
+.country-single-flag-img {
   width: 40vw;
   height: 25vw;
 }
 
 @media only screen and (max-width: 375px) {
-  .flag-img {
+  .country-single-flag-img {
     padding-top: 50px;
     width: 90vw;
     height: 60vw;
@@ -14,7 +14,7 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  .flag-img {
+  .country-single-flag-img {
     padding-top: 50px;
     width: 60vw;
     height: 30vw;

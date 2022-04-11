@@ -3,12 +3,11 @@ import "./CountriesBorderBtn.style.scss";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { State } from "../../store/reducer";
+import { IBorderCountries } from "../../type-definition/Country";
+import PropTypes from "prop-types";
 
-const CountriesBorderBtn = () => {
+const CountriesBorderBtn = ({ borderCountries }: IBorderCountries) => {
   const darkMode = useSelector((state: State) => state.darkMode.darkMode);
-  const borderCountries = useSelector(
-    (state: State) => state.country.borderCountries
-  );
 
   return (
     <div className="border-countries">
@@ -30,6 +29,19 @@ const CountriesBorderBtn = () => {
       </div>
     </div>
   );
+};
+
+CountriesBorderBtn.propTypes = {
+  borderCountries: PropTypes.arrayOf(
+    PropTypes.shape({
+      countryCode: PropTypes.string,
+      name: PropTypes.string,
+    })
+  ),
+};
+
+CountriesBorderBtn.defaultProps = {
+  borderCountries: [{ countryCode: "", name: "" }],
 };
 
 export default CountriesBorderBtn;
