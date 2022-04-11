@@ -4,7 +4,6 @@ import { Continents } from "../../constant/Continents";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { BtnName } from "../../constant/BtnName";
-import { CountryAPI } from "../../constant/CountryAPI";
 import { State } from "../../store/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";

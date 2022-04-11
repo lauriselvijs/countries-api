@@ -1,3 +1,4 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 import DarkModeBtn from "../../component/DarkModeBtn";
 import HeaderWrapper from "../../component/HeaderWrapper";
