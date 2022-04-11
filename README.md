@@ -1,22 +1,21 @@
 # Frontend Mentor - REST Countries API with color theme switcher solution
 
-This is a solution to the [REST Countries API with color theme switcher challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor **challenges** help you improve your coding skills by building realistic projects. 
+This is a solution to the [REST Countries API with color theme switcher challenge **on** Frontend Mentor](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca). Frontend Mentor **challenges** help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
+- [Frontend Mentor - REST Countries API with color theme switcher solution](#frontend-mentor---rest-countries-api-with-color-theme-switcher-solution)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+    - [The challenge](#the-challenge)
+    - [Screenshot](#screenshot)
+    - [Links](#links)
+  - [My process](#my-process)
+    - [Built with](#built-with)
+    - [What I learned](#what-i-learned)
+    - [Continued development](#continued-development)
+    - [Useful resources](#useful-resources)
+  - [Author](#author)
 
 ## Overview
 
@@ -29,87 +28,94 @@ Users should be able to:
 - Filter countries by region
 - Click on a country to see more detailed information on a separate page
 - Click through to the border countries on the detail page
-- Toggle the color scheme between light and dark mode *(optional)*
+- Toggle the color scheme between light and dark mode _(optional)_
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![countries](https://user-images.githubusercontent.com/85683069/162770021-aca6be56-65cc-4c38-a663-821726b51387.png)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
+![countries dark mode](https://user-images.githubusercontent.com/85683069/162770024-95eacf46-5570-4e08-afb9-7b3aa35a4c16.png)
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
+![countries mobile](https://user-images.githubusercontent.com/85683069/162770029-ffa2c180-8f94-461d-a3a4-530356dd1406.png)
 
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
+![countries mobile dark mode](https://user-images.githubusercontent.com/85683069/162770032-91bee71e-ef91-4ba5-9871-8427c0d63110.png)
 
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![country](https://user-images.githubusercontent.com/85683069/162770035-8b581c52-3726-4566-b052-202153fb873d.png)
+
+![country dark mode](https://user-images.githubusercontent.com/85683069/162770038-35d170a0-c1c5-4fff-a89b-c9859de7b67e.png)
+
+![country mobile](https://user-images.githubusercontent.com/85683069/162770039-cc90006f-b4da-4351-ac4f-bfea2382546d.png)
+
+![country mobile dark mode](https://user-images.githubusercontent.com/85683069/162770041-f391ebc1-247d-4317-8b01-d69a1a381b1f.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Github](https://github.com/lauriselvijs/countries-api)
+- Live Site URL: [Netlify](https://d25a1f-countries-api.netlify.app/)
 
 ## My process
 
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
+- HTML5 markup
 - Flexbox
 - CSS Grid
-- Mobile-first workflow
+- [SCSS](https://sass-lang.com/) - advanced variant of CSS
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- [React Icons](https://react-icons.github.io/react-icons/) - Include popular icons in your React projects easily with react-icons
+- [TypeScript](https://www.typescriptlang.org/) - Strongly typed programming language for JS
+- [Axios](https://github.com/axios/axios) - Promise based HTTP client for the browser and node.js
+- [Redux](https://redux.js.org/) - A Predictable State Container for JS Apps
+- [Redux thunk](https://github.com/reduxjs/redux-thunk) - Thunk middleware for Redux
+- [Redux persist](https://github.com/rt2zz/redux-persist) - Persist and rehydrate a redux store
+- [React Router ](https://v5.reactrouter.com/web/guides/quick-start) - Enables you to implement dynamic routing in a web app
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I learned to use redux to make async request to API
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+ (country: string) => async (dispatch: Dispatch<CountryActions | any>) => {
+    const onSuccess = (data: ICountryCard["country"][]) => {
+      dispatch({ type: Country.GET_COUNTRY_DATA_BY_SEARCH, payload: data });
+    };
+
+    const onError = (error: IError) => {
+      dispatch(setError(error));
+    };
+
+    try {
+      dispatch(setLoading());
+      const { data }: any = await axios.get(
+        `${FIND_COUNTRY_BY_NAME_URL}${country.toLowerCase()}`
+      );
+
+      return onSuccess(
+        data.map((country: any) => {
+          return { ...country, name: { common: country.name } };
+        })
+      );
+    } catch (error: any) {
+      return onError(error.response.data);
+    }
 ```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+I want keep working on state management in future using new tools like context api and redux toolkit
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [Redux API](https://redux.js.org/api/api-reference) - This helped me to better understand Redux
+- [React Router](https://reactrouter.com/docs/en/v6) - Great documentation to understand react router
+- [TypeScript Docs](https://www.typescriptlang.org/docs/) - Docs to better understand typescript
+- [JavaScript Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - JS docs
+- [w3schools CSS docs](https://www.w3schools.com/css/default.asp) - Great documentation to understand CSS
+- [w3schools HTML docs](https://www.w3schools.com/html/default.asp) - Great documentation to understand HTML
+- [ReactJS](https://reactjs.org/docs/getting-started.html) - Great documentation to understand ReactJS
+- [Axios Docs](https://reactjs.org/docs/getting-started.html) - Axios Docs -[SCSS Docs](https://sass-lang.com/documentation) - Documentation for SCSS
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Website - [Lauris](https://portfolio-rouge-seven.vercel.app/)
+- Frontend Mentor - [lauriselvijs](https://www.frontendmentor.io/profile/lauriselvijs)
