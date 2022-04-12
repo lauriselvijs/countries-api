@@ -1,12 +1,12 @@
 import React from "react";
-import "./CountryInfo.style.scss";
+import "./CountriesInfo.style.scss";
 import NavBarWrapper from "../../component/NavBarWrapper";
 import CountrySearch from "../../component/CountrySearch";
 import CountryContinentSelect from "../../component/CountryContinentSelect";
 import Countries from "../../component/Countries";
 import ClearSelect from "../../component/ClearSelect";
 
-const CountryInfo = () => {
+const CountriesInfo = () => {
   return (
     <main className="root">
       <NavBarWrapper>
@@ -19,4 +19,4 @@ const CountryInfo = () => {
   );
 };
 
-export default CountryInfo;
+export default CountriesInfo;

@@ -9,6 +9,9 @@ import CountryName from "../CountryName";
 import CountryPopulation from "../CountryPopulation";
 import CountryRegion from "../CountryRegion";
 import CountryCapital from "../CountryCapital";
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import { countryActions } from "../../store/action";
 
 const CountryCard = ({
   country: {
@@ -22,10 +25,22 @@ const CountryCard = ({
 }: ICountryCard) => {
   const darkMode = useSelector((state: State) => state.darkMode.darkMode);
 
+  const dispatch = useDispatch();
+
+  const { clearSingleCountryState } = bindActionCreators(
+    countryActions,
+    dispatch
+  );
+
+  const onCardClick = () => {
+    clearSingleCountryState();
+  };
+
   return (
     <Link to={`/country/${countryCode}`}>
       <section
         className={darkMode ? "countries-card-dark-mode" : "countries-card"}
+        onClick={onCardClick}
       >
         <CountryFlag countryName={common} flag={png} />
         <div className="countries-card-contents">

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./CountrySearch.style.scss";
-import { AiOutlineSearch } from "react-icons/ai";
 import { State } from "../../store/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { countryActions } from "../../store/action";
+import { AiOutlineSearch } from "@react-icons/all-files/ai/AiOutlineSearch";
 
 const CountrySearch = () => {
   const [countrySearch, setCountrySearch] = useState<string>("");

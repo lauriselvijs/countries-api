@@ -25,7 +25,7 @@ export interface ICountryCard {
     cca3: string;
     population: number;
     region: string;
-    capital: string;
+    capital: string[];
     flags: { png: string };
   };
 }

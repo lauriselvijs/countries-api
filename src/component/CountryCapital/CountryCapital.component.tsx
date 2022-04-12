@@ -1,12 +1,12 @@
 import React from "react";
 import "./CountryCapital.style.scss";
 import PropTypes from "prop-types";
-import { ISingleCountry } from "../../type-definition/Country";
+import { ICountryCard } from "../../type-definition/Country";
 
 const CountryCapital = ({
   capital,
 }: {
-  capital: ISingleCountry["capital"];
+  capital: ICountryCard["country"]["capital"] | string;
 }) => {
   return (
     <div className="country-capital">
@@ -17,11 +17,14 @@ const CountryCapital = ({
 };
 
 CountryCapital.propTypes = {
-  capital: PropTypes.string,
+  capital: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
 };
 
 CountryCapital.defaultProps = {
-  capital: "",
+  capital: [""],
 };
 
 export default CountryCapital;

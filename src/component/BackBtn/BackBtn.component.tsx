@@ -1,10 +1,10 @@
 import React from "react";
 import "./BackBtn.style.scss";
-import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { BtnName } from "../../constant/BtnName";
 import { useSelector } from "react-redux";
 import { State } from "../../store/reducer";
+import { BsArrowLeft } from "@react-icons/all-files/bs/BsArrowLeft";
 
 const { BACK } = BtnName;
 

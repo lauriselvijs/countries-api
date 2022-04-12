@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import "./CountryContinentSelect.style.scss";
 import { Continents } from "../../constant/Continents";
-import { IoIosArrowDown } from "react-icons/io";
-import { IoIosArrowUp } from "react-icons/io";
 import { BtnName } from "../../constant/BtnName";
 import { State } from "../../store/reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { countryActions } from "../../store/action";
+import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
+import { IoIosArrowUp } from "@react-icons/all-files/io/IoIosArrowUp";
 
 const { CONTINENT_LIST } = Continents;
 const { COUNTRY_SELECT_MENU } = BtnName;
