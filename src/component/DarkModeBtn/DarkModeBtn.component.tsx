@@ -1,12 +1,10 @@
 import React from "react";
 import "./DarkModeBtn.style.scss";
 import { BtnName } from "../../constant/BtnName";
-// import { BsMoon, BsMoonFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { bindActionCreators } from "redux";
 import { darkModeActions } from "../../store/action";
 import { State } from "../../store/reducer";
-import { BsMoon } from "@react-icons/all-files/bs/BsMoon";
 import { RiMoonFill } from "@react-icons/all-files/ri/RiMoonFill";
 import { RiMoonLine } from "@react-icons/all-files/ri/RiMoonLine";
 
