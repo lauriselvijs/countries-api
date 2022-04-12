@@ -100,6 +100,54 @@ I learned to use redux to make async request to API
     }
 ```
 
+I used lazy loading and code spliting to optimize app performance
+
+```js
+const App = () => {
+  const darkMode = useSelector((state: State) => state.darkMode.darkMode);
+
+  const Country = lazy(() => import("./route/Country"));
+  const NoMatch = lazy(() => import("./route/NoMatch"));
+  const CountriesInfo = lazy(() => import("./route/CountriesInfo"));
+
+  return (
+    <div className={darkMode ? "app-dark-mode" : "app"}>
+      <Router>
+        <Routes>
+          <Route path={ROOT} element={<Root />}>
+            <Route
+              index
+              element={
+                <Suspense fallback={<Loader />}>
+                  <CountriesInfo />
+                </Suspense>
+              }
+            />
+            <Route
+              path={COUNTRY_CCA3}
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Country />
+                </Suspense>
+              }
+            />
+          </Route>
+
+          <Route
+            path={NO_MATCH_ROUTE}
+            element={
+              <Suspense fallback={<Loader />}>
+                <NoMatch />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </Router>
+    </div>
+  );
+};
+```
+
 ### Continued development
 
 I want keep working on state management in future using new tools like context api and redux toolkit
