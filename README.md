@@ -58,8 +58,6 @@ Users should be able to:
 ### Built with
 
 - HTML5 markup
-- Flexbox
-- CSS Grid
 - [SCSS](https://sass-lang.com/) - advanced variant of CSS
 - [React](https://reactjs.org/) - JS library
 - [React Icons](https://react-icons.github.io/react-icons/) - Include popular icons in your React projects easily with react-icons
@@ -98,6 +96,54 @@ I learned to use redux to make async request to API
     } catch (error: any) {
       return onError(error.response.data);
     }
+```
+
+I used lazy loading and code spliting to optimize app performance
+
+```js
+const App = () => {
+  const darkMode = useSelector((state: State) => state.darkMode.darkMode);
+
+  const Country = lazy(() => import("./route/Country"));
+  const NoMatch = lazy(() => import("./route/NoMatch"));
+  const CountriesInfo = lazy(() => import("./route/CountriesInfo"));
+
+  return (
+    <div className={darkMode ? "app-dark-mode" : "app"}>
+      <Router>
+        <Routes>
+          <Route path={ROOT} element={<Root />}>
+            <Route
+              index
+              element={
+                <Suspense fallback={<Loader />}>
+                  <CountriesInfo />
+                </Suspense>
+              }
+            />
+            <Route
+              path={COUNTRY_CCA3}
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Country />
+                </Suspense>
+              }
+            />
+          </Route>
+
+          <Route
+            path={NO_MATCH_ROUTE}
+            element={
+              <Suspense fallback={<Loader />}>
+                <NoMatch />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </Router>
+    </div>
+  );
+};
 ```
 
 ### Continued development
