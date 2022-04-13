@@ -58,8 +58,6 @@ Users should be able to:
 ### Built with
 
 - HTML5 markup
-- Flexbox
-- CSS Grid
 - [SCSS](https://sass-lang.com/) - advanced variant of CSS
 - [React](https://reactjs.org/) - JS library
 - [React Icons](https://react-icons.github.io/react-icons/) - Include popular icons in your React projects easily with react-icons
