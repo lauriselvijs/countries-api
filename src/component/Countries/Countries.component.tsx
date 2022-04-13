@@ -26,13 +26,13 @@ const Countries = () => {
         <Loader />
       ) : (
         <>
-          <section className="countries-container">
+          <div className="countries-container">
             {countries.map(
               (country: ICountryCard["country"], index: number) => (
                 <CountryCard country={country} key={index} />
               )
             )}
-          </section>
+          </div>
         </>
       )}
     </>

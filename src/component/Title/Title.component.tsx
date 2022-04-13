@@ -11,10 +11,8 @@ const Title = () => {
   const darkMode = useSelector((state: State) => state.darkMode.darkMode);
 
   return (
-    <Link to={"/"}>
-      <section className={darkMode ? "title-dark-mode" : "title"}>
-        {TITLE}
-      </section>
+    <Link to={"/"} className="title-link">
+      <h1 className={darkMode ? "title-dark-mode" : "title"}>{TITLE}</h1>
     </Link>
   );
 };

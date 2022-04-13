@@ -38,7 +38,7 @@ const CountryCard = ({
 
   return (
     <Link to={`/country/${countryCode}`}>
-      <section
+      <div
         className={darkMode ? "countries-card-dark-mode" : "countries-card"}
         onClick={onCardClick}
       >
@@ -49,7 +49,7 @@ const CountryCard = ({
           <CountryRegion region={region} />
           <CountryCapital capital={capital} />
         </div>
-      </section>
+      </div>
     </Link>
   );
 };

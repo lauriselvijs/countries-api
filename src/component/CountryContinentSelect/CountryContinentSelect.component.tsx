@@ -37,7 +37,7 @@ const CountryContinentSelect = () => {
   };
 
   return (
-    <section className="country-continent-container">
+    <div className="country-continent-container">
       {showContinents ? (
         <IoIosArrowDown
           className={
@@ -75,7 +75,7 @@ const CountryContinentSelect = () => {
           </li>
         ))}
       </ul>
-    </section>
+    </div>
   );
 };
 

@@ -1,18 +1,22 @@
 @import "../../style/main";
 
-.title {
-  font-weight: $font-weight-extra-bold;
-  font-size: $title-font-size;
-  cursor: default;
-  color: $black;
+.title-link {
+  text-decoration: none;
 
-  &-dark-mode {
-    @extend .title;
-    color: $white;
-  }
+  .title {
+    font-weight: $font-weight-extra-bold;
+    font-size: $title-font-size;
+    cursor: default;
+    color: $black;
 
-  &:hover {
-    transform: scale(1.2);
+    &-dark-mode {
+      @extend .title;
+      color: $white;
+    }
+
+    &:hover {
+      transform: scale(1.2);
+    }
   }
 }
 
