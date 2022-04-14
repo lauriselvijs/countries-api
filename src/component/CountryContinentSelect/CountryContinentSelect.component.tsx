@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./CountryContinentSelect.style.scss";
 import { Continents } from "../../constant/Continents";
 import { BtnName } from "../../constant/BtnName";
@@ -8,12 +8,15 @@ import { bindActionCreators } from "redux";
 import { countryActions } from "../../store/action";
 import { IoIosArrowDown } from "@react-icons/all-files/io/IoIosArrowDown";
 import { IoIosArrowUp } from "@react-icons/all-files/io/IoIosArrowUp";
+import { useClickedOutside } from "../../hook/Event.hook";
 
 const { CONTINENT_LIST } = Continents;
 const { COUNTRY_SELECT_MENU } = BtnName;
 
 const CountryContinentSelect = () => {
   const [showContinents, setShowContinents] = useState<boolean>(false);
+
+  const countryContainerRef = useRef(null);
 
   const darkMode = useSelector((state: State) => state.darkMode.darkMode);
 
@@ -36,8 +39,10 @@ const CountryContinentSelect = () => {
     setShowContinents(!showContinents);
   };
 
+  useClickedOutside(showContinents, setShowContinents, countryContainerRef);
+
   return (
-    <div className="country-continent-container">
+    <div className="country-continent-container" ref={countryContainerRef}>
       {showContinents ? (
         <IoIosArrowDown
           className={
