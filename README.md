@@ -146,6 +146,32 @@ const App = () => {
 };
 ```
 
+I used custom hook that can change state depending if user clicked outside of element
+
+
+```js
+export const useClickedOutside = (
+  showElement: boolean,
+  setShowElement: React.Dispatch<React.SetStateAction<boolean>>,
+  ref: React.MutableRefObject<any>
+) => {
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent): void => {
+      if (ref.current && !ref.current.contains(event.target) && showElement) {
+        setShowElement(!showElement);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return (): void => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref, showElement]);
+};
+
+```
+
 ### Continued development
 
 I want keep working on state management in future using new tools like context api and redux toolkit
