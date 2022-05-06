@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useBottomScrollListener } from "react-bottom-scroll-listener";
 
 export const useClickedOutside = (
   showElement: boolean,
@@ -18,4 +19,21 @@ export const useClickedOutside = (
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref, showElement]);
+};
+
+export const useOnScroll = (itemArray: any[], itemsPerPage: number): any[] => {
+  const [pageArr, setPageArr] = useState<any[]>([]);
+
+  useEffect(() => {
+    setPageArr(itemArray.splice(0, itemsPerPage));
+  }, [itemArray]);
+
+  useBottomScrollListener(() =>
+    setPageArr((prevState) => [
+      ...prevState,
+      ...itemArray.splice(0, itemsPerPage),
+    ])
+  );
+
+  return pageArr;
 };

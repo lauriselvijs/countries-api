@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useEffect } from "react";
 import "./CountryCard.style.scss";
 import { Link } from "react-router-dom";
 import { ICountryCard } from "../../type-definition/Country";
@@ -12,6 +12,7 @@ import CountryCapital from "../CountryCapital";
 import { useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { countryActions } from "../../store/action";
+import { Country } from "../../constant/CountryRoute/CountryRoute.const";
 
 const CountryCard = ({
   country: {
@@ -24,7 +25,7 @@ const CountryCard = ({
   },
 }: ICountryCard) => {
   const darkMode = useSelector((state: State) => state.darkMode.darkMode);
-
+  const { COUNTRY } = Country;
   const dispatch = useDispatch();
 
   const { clearSingleCountryState } = bindActionCreators(
@@ -37,7 +38,7 @@ const CountryCard = ({
   };
 
   return (
-    <Link to={`/country/${countryCode}`}>
+    <Link to={`${COUNTRY}${countryCode}`}>
       <div
         className={darkMode ? "countries-card-dark-mode" : "countries-card"}
         onClick={onCardClick}

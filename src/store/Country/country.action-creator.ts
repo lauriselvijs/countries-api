@@ -112,16 +112,20 @@ export const getCountryDataBySearch =
     };
 
     try {
-      dispatch(setLoading());
-      const { data }: any = await axios.get(
-        `${FIND_COUNTRY_BY_NAME_URL}${country.toLowerCase()}`
-      );
+      if (!country) {
+        return dispatch(getCountryData());
+      } else {
+        dispatch(setLoading());
+        const { data }: any = await axios.get(
+          `${FIND_COUNTRY_BY_NAME_URL}${country.toLowerCase()}`
+        );
 
-      return onSuccess(
-        data.map((country: any) => {
-          return { ...country, name: { common: country.name } };
-        })
-      );
+        return onSuccess(
+          data.map((country: any) => {
+            return { ...country, name: { common: country.name } };
+          })
+        );
+      }
     } catch (error: any) {
       return onError(error.response.data);
     }

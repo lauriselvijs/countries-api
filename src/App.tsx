@@ -7,17 +7,18 @@ import { State } from "./store/reducer";
 import { CountryRoute } from "./constant/CountryRoute";
 import { RootRoute } from "./constant/RootRoute";
 import { NoMatchRoute } from "./constant/NoMatchRoute";
-const { NO_MATCH_ROUTE } = NoMatchRoute;
-const { COUNTRY_CCA3 } = CountryRoute.Country;
-const { ROOT } = RootRoute.Root;
 import Loader from "./component/Loader";
+import CountriesInfo from "./route/CountriesInfo";
 
 const App = () => {
+  const { NO_MATCH_ROUTE } = NoMatchRoute;
+  const { COUNTRY_CCA3 } = CountryRoute.Country;
+  const { ROOT } = RootRoute.Root;
   const darkMode = useSelector((state: State) => state.darkMode.darkMode);
 
   const Country = lazy(() => import("./route/Country"));
   const NoMatch = lazy(() => import("./route/NoMatch"));
-  const CountriesInfo = lazy(() => import("./route/CountriesInfo"));
+  // const CountriesInfo = lazy(() => import("./route/CountriesInfo"));
 
   return (
     <div className={darkMode ? "app-dark-mode" : "app"}>
@@ -27,9 +28,9 @@ const App = () => {
             <Route
               index
               element={
-                <Suspense fallback={<Loader />}>
-                  <CountriesInfo />
-                </Suspense>
+                // <Suspense fallback={<Loader />}>
+                <CountriesInfo />
+                // </Suspense>
               }
             />
             <Route

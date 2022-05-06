@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Country.style.scss";
 import BackBtn from "../../component/BackBtn";
 import CountrySingleInfo from "../../component/CountrySingleInfo";
